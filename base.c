@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "fichier.h"
+#include "base.h"
 
 void OuvertureBase(FILE* fp)
 {
@@ -18,4 +18,12 @@ void OuvertureBase(FILE* fp)
 		}
 	}
 	fprintf(stdout,"fp_OuvertureFichier: End\n");
+}
+
+void Lister_base(FILE* fp)
+{
+	Film f1;
+	Film *f=&f1;
+	fscanf(fp, "%d;%s;%d;%s;%d;%s;%s;%s;%d;%d", f->id, f->titre);
+
 }
