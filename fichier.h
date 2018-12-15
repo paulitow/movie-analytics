@@ -1,5 +1,5 @@
-#ifndef MOVIELIB_H
-#define MOVIELIB_H
+#ifndef FICHIER_H
+#define FICHIER_H
 
 #include <stdio.h>
 #include <string.h>
