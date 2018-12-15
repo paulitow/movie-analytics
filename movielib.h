@@ -4,5 +4,5 @@
 #include <stdio.h>
 #include <string.h>
 
-void OuvertureFichier(FILE** fp);
+void OuvertureBase(FILE* fp);
 #endif
