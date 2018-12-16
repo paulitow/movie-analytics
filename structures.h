@@ -18,3 +18,5 @@ typedef struct {
   float moyenne_notes;
   float nb_votes;
 }film;
+
+struct film = NULL;
