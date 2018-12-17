@@ -24,6 +24,6 @@ void Lister_base(FILE* fp)
 {
 	Film f1;
 	Film *f=&f1;
-	fscanf(fp, "%d;%s;%d;%s;%d;%s;%s;%s;%d;%d", f->id, f->titre);
+	fscanf(fp, "%d;%s;%d;%s;%d;%s;%s;%s;%d;%d", f->id, f->titre, f->duree);
 
 }
