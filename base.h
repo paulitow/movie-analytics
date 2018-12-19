@@ -10,3 +10,5 @@ typedef struct {
 
 void OuvertureBase(FILE* fp);
 #endif
+
+void menu(FILE* fp);
