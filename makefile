@@ -1,11 +1,11 @@
-Movie-analytics: main.o ouvrir_fichier.o
-	gcc main.o ouvrir_fichier.o -o Movie-analytics
+Movie-analytics: main.o base.o
+	gcc main.o base.o -o Movie-analytics
 
 main.o:
 		gcc -c main.c
 
-ouvrir_fichier.o:
-	gcc -c ouvrir_fichier.c
+base.o:
+	gcc -c base.c
 
 clean:
 	rm *.o Movie-analytics
