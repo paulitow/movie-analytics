@@ -27,10 +27,17 @@ void menu(FILE* base_menu) {
     switch (reponse) {
 
       case 0: break;
-      case 1: recherche_film(base_menu); break;
-      case 2: affiche_films(base_menu); break;
-      case 3: moyenne_pays(base_menu); break;
-      default: printf(Tapez une des commandes proposees);
+      case 1: 
+        recherche_film(base_menu); 
+        break;
+      case 2: 
+        affiche_films(base_menu); 
+        break;
+      case 3: 
+        moyenne_pays(base_menu); 
+        break;
+      default: 
+        printf("Tapez une des commandes proposees");
     }
   }while(reponse != 0);
 }
