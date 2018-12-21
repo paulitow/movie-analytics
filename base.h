@@ -12,4 +12,6 @@ void OuvertureBase(FILE* fp);
 #endif
 
 void menu(FILE* fp);
-void recherche_film(char *nom, FILE* base_recherche);
+void recherche_film(FILE* base_recherche, char *nom);
+void affiche_film(FILE *f, Film *film);
+void moyenne_pays(FILE * f);

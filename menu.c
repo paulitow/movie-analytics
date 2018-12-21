@@ -28,10 +28,10 @@ void menu(FILE* base_menu) {
 
       case 0: break;
       case 1: 
-        recherche_film(base_menu); 
+        recherche_film(base_menu, nom); 
         break;
       case 2: 
-        affiche_films(base_menu); 
+        affiche_film(base_menu, &recherche); 
         break;
       case 3: 
         moyenne_pays(base_menu); 

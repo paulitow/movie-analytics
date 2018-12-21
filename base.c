@@ -24,11 +24,11 @@ void Lister_base(FILE* fp) {
 
 	Film f1;
 	Film *f=&f1;
-	fscanf(fp, "%d;%s;%d;%s;%d;%s;%s;%s;%d;%d", f->id, f->titre, f->duree);
+	//fscanf(fp, "%d;%s;%d;%s;%d;%s;%s;%s;%d;%d", f->id, f->titre, f->duree);
 
 }
 
-void recherche_film(char *nom, FILE* base_recherche) {
+void recherche_film(FILE* base_recherche, char *nom) {
 
 	Film film;
 	int lire = 0, i = 0;
@@ -50,10 +50,10 @@ void recherche_film(char *nom, FILE* base_recherche) {
 
 					if (strcmp(nom, film.titre)==0) {
 
-						affiche_film(&nouveau);
-						return film;
+						affiche_film(base_recherche, &film);
+						//return film;
 					}
-					i++
+					i++;
 				}
 			}while (!feof(base_recherche) && lire != 0);
 
@@ -61,7 +61,15 @@ void recherche_film(char *nom, FILE* base_recherche) {
 
 			else {
 				printf("\nle film %s est inexistant !", nom);
-				return film;
+				//return film;
 			}
-	} return film;
+	} //return film;
+}
+
+void affiche_film(FILE *f, Film *film){
+
+}
+
+void moyenne_pays(FILE * f){
+
 }
