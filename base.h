@@ -12,3 +12,4 @@ void OuvertureBase(FILE* fp);
 #endif
 
 void menu(FILE* fp);
+void recherche_film(char *nom, FILE* base_recherche);
