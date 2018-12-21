@@ -6,11 +6,11 @@
 void OuvertureBase(FILE* fp) {
 
 	fprintf(stdout,"fp_OuvertureFichier: Begin\n");
-	fp=fopen("database.csv","r+b");
+	fp=fopen("database_2.csv","r+b");
 	if(fp==NULL)
 	{
 		fprintf(stdout,"Erreur ouverture fichier r+b\n");
-		fp=fopen("database.csv","w+b");
+		fp=fopen("database_2.csv","w+b");
 		if(fp==NULL)
 		{
 			fprintf(stdout,"Erreur ouverture fichier w+b. Sortie du programme\n");
@@ -24,8 +24,9 @@ void Lister_base(FILE* fp) {
 
 	Film f1;
 	Film *f=&f1;
-	//fscanf(fp, "%d;%s;%d;%s;%d;%s;%s;%s;%d;%d", f->id, f->titre, f->duree);
-
+	//filmtv_ID;film_title;year;genre;duration;country;director;actors;avg_vote;votes;
+	fscanf(fp, "%d;%s;%d;%s;%d;%s;%s;%s;%d;%d", &f1.id, f->titre, &f->annee, f->genre, &f->duree, f->pays, f->real, f->acteurs, &f->note, &f->nb_vote);
+	//(*p).annee <==> p->annee
 }
 
 void recherche_film(FILE* base_recherche, char *nom) {

@@ -36,6 +36,8 @@ void menu(FILE* base_menu) {
       case 3: 
         moyenne_pays(base_menu); 
         break;
+      case 4:
+        Lister_base(base_menu);
       default: 
         printf("Tapez une des commandes proposees");
     }
