@@ -16,6 +16,8 @@ int main() {
   int n=0;
   n = nb_ligne(f);
   Film *f_base[n];
+  Film *f_bdd=NULL;
+  f_bdd = (Film*)malloc(sizeof(Film)*n);
 
   int choix;
   do {
@@ -23,7 +25,7 @@ int main() {
     scanf("%d", &choix);
     switch(choix){
         case 1:
-            init_bdd(f, &n, *f_base);
+            init_bdd(f, &n, f_bdd);
         break;
 
         case 2:

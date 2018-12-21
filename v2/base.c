@@ -25,10 +25,16 @@ void init_bdd(FILE * f, int *n, Film *film){
     printf("NB ligne : %d", *n);
     while(fgets(l, 255, f)){
          
-        printf("%s",strtok(l,";"));
+        //printf("%s",strtok(l,";"));
+        (film+i)->id = atoi(strtok(l,";"));
+        printf(" ID : %d\n", film[i].id);
         //film[i].id = atoi(strtok(l,";"));
         //(f_base[i]->id)=strtok(l,";");
         printf("%s",strtok(NULL,";"));
+        //strcpy((film+i)->titre, strtok(NULL,";"));
+
+        (film+i)->annee = atoi(strtok(NULL,";"));
+        printf("Annee : %d", film[i].annee);
 
 
 
