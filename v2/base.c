@@ -16,9 +16,40 @@ void menu(){ // affichage simple du menu
 
 }
 
-void init_bdd(FILE * f){
+void init_bdd(FILE * f, int *n, Film *film){
     char l[255];
     char *o;
+    
+    int i=0;
+    fseek(f,0,SEEK_SET);
+    printf("NB ligne : %d", *n);
+    while(fgets(l, 255, f)){
+         
+        printf("%s",strtok(l,";"));
+        //film[i].id = atoi(strtok(l,";"));
+        //(f_base[i]->id)=strtok(l,";");
+        printf("%s",strtok(NULL,";"));
+
+
+
+        printf("----------\n");
+        i++;
+    }
+}
+int nb_ligne(FILE *f){
+    fseek(f,0,SEEK_SET);
+    int n=0;
+    char l[255];
+    while(fgets(l, 255, f)){
+        n++;
+    }
+    return n;
+    
+}
+/*
+void afficher_base(FILE *f){
+    fseek(f,0,SEEK_SET);
+    printf("NB ligne : %d", n);
     while(fgets(l, 255, f)){
         //printf("%s",l);
         o = strtok(l,";");
@@ -27,5 +58,4 @@ void init_bdd(FILE * f){
             o = strtok(NULL,";");
         }
     }
-}
-
+}*/

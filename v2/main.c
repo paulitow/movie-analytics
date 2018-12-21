@@ -13,6 +13,9 @@ int main() {
   }else{
       printf("Ouverture OK !\n");
   }
+  int n=0;
+  n = nb_ligne(f);
+  Film *f_base[n];
 
   int choix;
   do {
@@ -20,7 +23,7 @@ int main() {
     scanf("%d", &choix);
     switch(choix){
         case 1:
-            init_bdd(f);
+            init_bdd(f, &n, *f_base);
         break;
 
         case 2:
