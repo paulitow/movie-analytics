@@ -45,6 +45,23 @@ void recherche_film(char *nom, FILE* base_recherche) {
 
 				memset(&film,0,sizeof(Film));
 				lire = fread(&film,sizeof(Film),1,base_recherche);
+
+				if (lire) {
+
+					if (strcmp(nom, film.titre)==0) {
+
+						affiche_film(&nouveau);
+						return film;
+					}
+					i++
+				}
+			}while (!feof(base_recherche) && lire != 0);
+
+			if (i == 0) printf("\nBase vide");
+
+			else {
+				printf("\nle film %s est inexistant !", nom);
+				return film;
 			}
-	}
+	} return film;
 }
