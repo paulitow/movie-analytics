@@ -83,4 +83,5 @@ int main() {
     }
   }while(choix!=0);
   free(f_bdd); //C'est bon je te relache ! Va en paix mamen !
+  printf("L'équipe Movie Analytics vous souhaite de bonne fêtes !\n\n");
 }
