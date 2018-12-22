@@ -17,27 +17,42 @@ void menu(){ // affichage simple du menu
 }
 
 void init_bdd(FILE * f, int *n, Film *film){
+    // filmtv_ID;film_title;year;genre;duration;country;director;actors;avg_vote;votes;
     char l[2555];
     char *o;
     
     int i=0;
     fseek(f,0,SEEK_SET);
-    printf("NB ligne : %d", *n);
-    while(fgets(l, 255, f)){
+    while(fgets(l, 2555, f)){
          
-        (film+i)->id = atoi(strtok(l,";"));
-
+        (film+i)->id = atoi(strtok(l,";")); // ID
         printf(" ID : %d\n", film[i].id);
 
-        printf("%s",strtok(NULL,";"));
-        
-        (film+i)->annee = atoi(strtok(NULL,";"));
+        //printf("%s",strtok(NULL,";")); 
+        strcpy((film+i)->titre,strtok(NULL,";"));// Titre
+        printf("Titre : %s\n", film[i].titre);
 
-        printf("\nAnnee : %d", film[i].annee);
 
-        printf("\n----------\n");
-        i++;
+        (film+i)->annee = atoi(strtok(NULL,";")); // Annee
+        printf("Annee : %d\n", film[i].annee);
+
+        strcpy((film+i)->genre,strtok(NULL,";"));// Genre
+        printf("Genre : %s\n", film[i].genre);
+
+        (film+i)->duree = atoi(strtok(NULL,";")); // Durée
+        printf("Durée : %d\n", film[i].duree);
+
+        printf("----------\n");
+        i++; // compteur tb de structure
     }
+    printf("NB ligne fichier : %d\n", *n);
+    printf("NB ligne strucutre : %d\n", i);
+    if (i!=*n){
+        printf("Erreur : Delta entre fichier et structure !!\n");
+    }else{
+        printf("Info : Base cohérente avec fichier\n");
+    }
+    printf("--Fin d'importation--\n");
 }
 int nb_ligne(FILE *f){
     fseek(f,0,SEEK_SET);
