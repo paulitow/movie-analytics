@@ -1,5 +1,5 @@
 Movie-analytics: main.o base.o
-	gcc main.o base.o -o Movie-analytics
+	gcc -Wall main.o base.o -o Movie-analytics
 
 main.o:
 		gcc -c main.c

@@ -13,7 +13,7 @@ int main() {
   }else{
       printf("Ouverture OK !\n");
   }
-  int n=0, i=0, id=0;
+  int n=0, i=0, id=0, annee=0;;
   char nom[50];
   n = nb_ligne(f);
   //Film *f_base[n];
@@ -43,13 +43,17 @@ int main() {
         break;
 
         case 4:
+            //printf("");
+            lister_film(f_bdd, 0, &i); //0 = Trie par genre
         break;
 
         case 5:
+            lister_film(f_bdd, 1 , &i); //1 = trie par annee
         break;
 
         default:
         break;
     }
   }while(choix!=0);
+  free(f_bdd); //C'est bon je te relache ! Va en paix mamen !
 }

@@ -10,7 +10,7 @@ void menu(){ // affichage simple du menu
     printf("2 : Chercher un Film dans la base\n");
     printf("3 : Récupérer l'ID d'un film\n");
     printf("4 : Lister les films par genre\n");
-    printf("5 : Calcul par département pour chaque question : du pourcentage de OUI et du pourcentage de NON\n");
+    printf("5 : CLister les films par année\n");
     printf("0 : Quitter...\n");
     printf("Votre choix ?\n");
 
@@ -137,27 +137,112 @@ int chercher_id_film(Film *film, char *nom, int *i){
 
 }
 
-    void lister_film(Film *film, int *arg, int *i){
-        
-        int i2=0, rep=0;
-        switch(*arg){
+    void lister_film(Film *film, int arg, int *i){
+        char genre[50];
+        Film best_film;
+        int i2=0, rep=0, tmp=0, note=0;
+        switch(arg){
             case 0: //Par genre
                 printf("Choix des genres :\n");
                 printf("0 : Comédie\n");
                 printf("1 : Drame\n");
                 printf("2 : Thriller\n");
                 printf("3 : Aventure\n");
-                printf("4 : Horreur\n");
+                printf("4 : Action\n");
                 printf("5 : Western\n");
-                printf("--------Choix ?---------");
+                printf("6 : Horreur\n");
+                printf("7 : Mythologie\n");
+                printf("8 : Biographie\n");
+                printf("9 : Musicale\n");
+                printf("--------Choix ?---------\n");
                 scanf("%d", &rep);
+                switch(rep){
+                    case 0:
+                        strcpy(genre, "Comedy");
+                    break;
 
+                    case 1:
+                        strcpy(genre, "Drama");
+                    break;
+
+                    case 2:
+                        strcpy(genre, "Thriller");
+                    break;
+
+                    case 3: 
+                        strcpy(genre, "Adventure");
+                    break;
+
+                    case 4:
+                        strcpy(genre, "Action");
+                    break;
+
+                    case 5:
+                        strcpy(genre, "Western");
+                    break;
+
+                    case 6:
+                        strcpy(genre, "Horror");
+                    break;
+
+                    case 7:
+                        strcpy(genre, "Mythology");
+                    break;
+
+                    case 8:
+                        strcpy(genre, "Biography");
+                    break;
+
+                    case 9:
+                        strcpy(genre, "Musical");
+                    break;
+                }
+                //une fois le genre initialiser, on peux référencer les films
+                
                 while(i2<=*i){
-                    if (strcmp("", film[i2].titre)==0){
+                    if (strcmp(genre, film[i2].genre)==0){
+                        tmp++; //Compte le nombre de film du genre
+                        if (film[i2].note>note){
+                            best_film=film[i2];
+                        }
                     }
-                }    
-            break;
+                    i2++;
+                }
+                printf("Il y à %d film pour le genre %s\n", tmp, genre);
+                printf("Le film le mieux noté de ce genre est :\n");
+                printf("Titre : %s\n", best_film.titre);
+                printf("Annee : %d\n", best_film.annee);
+                printf("Genre : %s\n", best_film.genre);
+                printf("Note : %d\n", best_film.note);
+                printf("----------\n");
 
+            break; //Fin recherche par genre
+
+            case 1: //recherche par annee
+                printf("Entrez l'année recherchée :\n");
+                scanf("%d", &rep);
+                if (rep>2018){
+                    printf("!! Eh Oh on peut pas aller plus vite que la musique !\n!! Regarde deja ceux de 2018 non ?\n");
+                    rep=2018;
+                }
+                while(i2<=*i){
+                    if (film[i2].annee==rep){
+                        tmp++; //Compte le nombre de film de cette année
+                        if (film[i2].note>note){
+                            best_film=film[i2];
+                        }
+                    }
+                    i2++;
+                }
+                printf("Il y à %d film pour l'année %d\n", tmp, rep);
+                printf("Le film le mieux noté de cette année est :\n");
+                printf("Titre : %s\n", best_film.titre);
+                printf("Annee : %d\n", best_film.annee);
+                printf("Genre : %s\n", best_film.genre);
+                printf("Note : %d\n", best_film.note);
+                printf("----------\n");
+
+            break;
             default:
                 printf("Mauvais arguments !");
             break;
