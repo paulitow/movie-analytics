@@ -30,25 +30,52 @@ int main() {
         break;
 
         case 2:
-            printf("Entrez le nom du film à chercher : \n");
-            scanf("%s", nom);
-            chercher_film(f_bdd, nom, &i);
+            if (i!=0){
+                printf("Entrez le nom du film à chercher : \n");
+                scanf("%s", nom);
+                chercher_film(f_bdd, nom, &i);
+            }else{
+                printf("Erreur : la base n'est pas initialiser !\n");
+            }
         break;
 
         case 3:
-            printf("Entrez le nom du film à chercher : \n");
-            scanf("%s", nom);
-            id=chercher_id_film(f_bdd, nom, &i);
-            printf("%d", id);
+            if (i!=0){
+                printf("Entrez le nom du film à chercher : \n");
+                scanf("%s", nom);
+                id=chercher_id_film(f_bdd, nom, &i);
+                printf("%d", id);
+            }else{
+                printf("Erreur : la base n'est pas initialiser !\n");
+            }
         break;
 
         case 4:
             //printf("");
-            lister_film(f_bdd, 0, &i); //0 = Trie par genre
+            if (i!=0){
+                lister_film(f_bdd, 0, &i); //0 = Trie par genre
+            }else{
+                printf("Erreur : la base n'est pas initialiser !\n");
+            }
         break;
 
         case 5:
-            lister_film(f_bdd, 1 , &i); //1 = trie par annee
+            if (i!=0){
+                lister_film(f_bdd, 1 , &i); //1 = trie par annee
+            }else{
+                printf("Erreur : la base n'est pas initialiser !\n");
+            }
+        break;
+
+        case 6:
+            if (i!=0){
+                lister_film(f_bdd, 2 , &i); //1 = par pays
+            }else{
+                printf("Erreur : la base n'est pas initialiser !\n");
+            }
+        break;
+        case 7:
+            bonus();
         break;
 
         default:

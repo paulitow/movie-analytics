@@ -11,6 +11,8 @@ void menu(){ // affichage simple du menu
     printf("3 : Récupérer l'ID d'un film\n");
     printf("4 : Lister les films par genre\n");
     printf("5 : Lister les films par année\n");
+    printf("6 : Lister les films par pays\n");
+    printf("7 : !! LE BONUS !!\n");
     printf("0 : Quitter...\n");
     printf("Votre choix ?\n");
 
@@ -143,6 +145,8 @@ int chercher_id_film(Film *film, char *nom, int *i){
         int i2=0, rep=0, tmp=0, note=0;
         switch(arg){
             case 0: //Par genre
+                i2=0;
+                note=0;
                 printf("Choix des genres :\n");
                 printf("0 : Comédie\n");
                 printf("1 : Drame\n");
@@ -219,6 +223,8 @@ int chercher_id_film(Film *film, char *nom, int *i){
             break; //Fin recherche par genre
 
             case 1: //recherche par annee
+                i2=0;
+                note=0;
                 printf("Entrez l'année recherchée :\n");
                 scanf("%d", &rep);
                 if (rep>2018){
@@ -243,6 +249,82 @@ int chercher_id_film(Film *film, char *nom, int *i){
                 printf("----------\n");
 
             break;
+                
+            case 2: //recherche par pays
+                i2=0;
+                note=0;
+                printf("Choix des pays :\n");
+                printf("0 : France\n");
+                printf("1 : Italie\n");
+                printf("2 : USA\n");
+                printf("3 : Allemagne\n");
+                printf("4 : Suisse\n");
+                printf("5 : Angleterre\n");
+                printf("6 : Mexique\n");
+                printf("7 : Russie\n");
+                printf("8 : Suède\n");
+                printf("9 : Canada\n");
+                printf("--------Choix ?---------\n");
+                scanf("%d", &rep);
+                switch(rep){
+                    case 0:
+                        strcpy(genre, "France");
+                    break;
+
+                    case 1:
+                        strcpy(genre, "Italy");
+                    break;
+
+                    case 2:
+                        strcpy(genre, "United States");
+                    break;
+
+                    case 3: 
+                        strcpy(genre, "Germany");
+                    break;
+
+                    case 4:
+                        strcpy(genre, "Switzerland");
+                    break;
+
+                    case 5:
+                        strcpy(genre, "Great Britain");
+                    break;
+
+                    case 6:
+                        strcpy(genre, "Mexico");
+                    break;
+
+                    case 7:
+                        strcpy(genre, "Russia");
+                    break;
+
+                    case 8:
+                        strcpy(genre, "Sweden");
+                    break;
+
+                    case 9:
+                        strcpy(genre, "Canada");
+                    break;
+                }
+
+                while(i2<=*i){
+                    if (strcmp(film[i2].pays, genre)==0){ //la var s'appelle GENRE mais elle contient PAYS
+                        tmp++; //Compte le nombre de film de cette année
+                        if (film[i2].note>note){
+                            best_film=film[i2];
+                        }
+                    }
+                    i2++;
+                }
+                printf("Il y à %d film pour le pays %s\n", tmp, genre);
+                printf("Le film le mieux noté de ce pays est :\n");
+                printf("Titre : %s\n", best_film.titre);
+                printf("Annee : %d\n", best_film.annee);
+                printf("Genre : %s\n", best_film.genre);
+                printf("Note : %d\n", best_film.note);
+                printf("----------\n");
+            break;
             default:
                 printf("Mauvais arguments !");
             break;
@@ -261,3 +343,21 @@ void afficher_base(FILE *f){
         }
     }
 }*/
+
+void bonus(){
+
+printf("               X   X   XXXXX   XXXXX   XXXXX   X   X\n");
+printf("               XX XX   X       X   X   X   X    X X\n");
+printf("               X X X   XXX     XXXXX   XXXXX     X\n");
+printf("               X   X   X       X  X    X  X      X\n");
+printf("               X   X   XXXXX   X   X   X   X     X\n");
+printf("\n");
+printf("\n");
+printf("XXXXX   X   X   XXXXX   XXX   XXXXX   XXXXX   X   X   XXXXX   XXXXX\n");
+printf("X       X   X   X   X    X    X         X     XX XX   X   X   X\n");
+printf("X       XXXXX   XXXXX    X    XXXXX     X     X X X   XXXXX   XXXXX\n");
+printf("X       X   X   X  X     X        X     X     X   X   X   X       X\n");
+printf("XXXXX   X   X   X   X   XXX   XXXXX     X     X   X   X   X   XXXXX\n");
+
+
+}
