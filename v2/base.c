@@ -23,7 +23,7 @@ void init_bdd(FILE * f, int *n, Film *film){
     
     int i=0;
     fseek(f,0,SEEK_SET);
-    while(fgets(l, 2555, f)){
+    while(fgets(l, 2555, f)){ //Je ne sais pas si c'est la bonne valeur...
          
         (film+i)->id = atoi(strtok(l,";")); // ID
         printf("ID : %d\n", film[i].id);
