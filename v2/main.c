@@ -13,27 +13,33 @@ int main() {
   }else{
       printf("Ouverture OK !\n");
   }
-  int n=0;
+  int n=0, i=0, id=0;
+  char nom[50];
   n = nb_ligne(f);
-  Film *f_base[n];
+  //Film *f_base[n];
   Film *f_bdd=NULL;
-  f_bdd = (Film*)malloc(sizeof(Film)*n);
+  f_bdd = (Film*)malloc(sizeof(Film)*n); // On Alloue la taille necessaire à l'init de la base
 
   int choix;
   do {
-    menu();
+    menu(); // affichage simple du menu
     scanf("%d", &choix);
     switch(choix){
         case 1:
-            init_bdd(f, &n, f_bdd);
+            i=init_bdd(f, &n, f_bdd);
         break;
 
         case 2:
-
+            printf("Entrez le nom du film à chercher : \n");
+            scanf("%s", nom);
+            chercher_film(f_bdd, nom, &i);
         break;
 
         case 3:
-
+            printf("Entrez le nom du film à chercher : \n");
+            scanf("%s", nom);
+            id=chercher_id_film(f_bdd, nom, &i);
+            printf("%d", id);
         break;
 
         case 4:

@@ -7,21 +7,21 @@
 void menu(){ // affichage simple du menu
     printf("------MENU------\n");
     printf("1 : Initialiser la BDD\n");
-    printf("2 : Ajout à la base d'informations existantes d'un fichier d'un nouveau point de manifestation\n");
-    printf("3 : Calcul pour chaque question : du pourcentage de OUI et du pourcentage de NON\n");
-    printf("4 : Calcul du nombre de gilets jaune par département\n");
+    printf("2 : Chercher un Film dans la base\n");
+    printf("3 : Récupérer l'ID d'un film\n");
+    printf("4 : Lister les films par genre\n");
     printf("5 : Calcul par département pour chaque question : du pourcentage de OUI et du pourcentage de NON\n");
     printf("0 : Quitter...\n");
     printf("Votre choix ?\n");
 
 }
 
-void init_bdd(FILE * f, int *n, Film *film){
+int init_bdd(FILE * f, int *n, Film *film){ // retrourne le nombre d'éléments en base et init
     // filmtv_ID;film_title;year;genre;duration;country;director;actors;avg_vote;votes;
     char l[2555];
     char *o;
-    
     int i=0;
+
     fseek(f,0,SEEK_SET);
     while(fgets(l, 2555, f)){ //Je ne sais pas si c'est la bonne valeur...
          
@@ -69,17 +69,100 @@ void init_bdd(FILE * f, int *n, Film *film){
         printf("Info : Base cohérente avec fichier\n");
     }
     printf("--Fin d'importation--\n");
+    return i;
 }
+
 int nb_ligne(FILE *f){
     fseek(f,0,SEEK_SET);
     int n=0;
-    char l[255];
-    while(fgets(l, 255, f)){
+    char l[2555];
+    while(fgets(l, 2555, f)){
         n++;
     }
     return n;
     
 }
+
+void chercher_film(Film *film, char *nom, int *i){
+    int i2=0, nb_c=0;
+    printf("OK, je vais chercher un film nommé %s sur %d éléments\n", nom, *i);
+    while(i2<=*i){
+        if (strcmp(nom, film[i2].titre)==0){
+            printf("J'ai trouvé !\n");
+            printf("ID : %d\n", film[i2].id);
+            printf("Titre : %s\n", film[i2].titre);
+            printf("Annee : %d\n", film[i2].annee);
+            printf("Genre : %s\n", film[i2].genre);
+            printf("----------\n");
+            nb_c++;
+
+        }
+        i2++;
+    }
+    printf("Il y a %d correspondance(s)\n", nb_c);
+
+}
+
+int chercher_id_film(Film *film, char *nom, int *i){
+    int i2=0, nb_c=0, id=0;
+    printf("OK, je vais chercher un film nommé %s sur %d éléments\n", nom, *i);
+    while(i2<=*i){
+        if (strcmp(nom, film[i2].titre)==0){
+            printf("J'ai trouvé !\n");
+            printf("ID : %d\n", film[i2].id);
+            printf("Titre : %s\n", film[i2].titre);
+            printf("Annee : %d\n", film[i2].annee);
+            printf("Genre : %s\n", film[i2].genre);
+            printf("----------\n");
+            id=film[i2].id;
+            nb_c++;
+
+        }
+        i2++;
+    }
+    printf("Il y a %d correspondance(s)\n", nb_c);
+    if (nb_c!=0){//il y à au moins 1 correspondance
+        if (nb_c>1){//2 ou plus de correspondance
+            printf("Il y à plusieurs correspondance, veuilez choisir l'ID :\n");
+            scanf("%d", &id);
+            return id;
+        }else{ // qu'une seule corespondance
+            return id;
+        }
+    }else{ //Pas de correspondance
+        id=-1;//on indique une recherche nulle
+        printf("Pas de film nommé %s", nom);
+        return id;
+    }
+
+}
+
+    void lister_film(Film *film, int *arg, int *i){
+        
+        int i2=0, rep=0;
+        switch(*arg){
+            case 0: //Par genre
+                printf("Choix des genres :\n");
+                printf("0 : Comédie\n");
+                printf("1 : Drame\n");
+                printf("2 : Thriller\n");
+                printf("3 : Aventure\n");
+                printf("4 : Horreur\n");
+                printf("5 : Western\n");
+                printf("--------Choix ?---------");
+                scanf("%d", &rep);
+
+                while(i2<=*i){
+                    if (strcmp("", film[i2].titre)==0){
+                    }
+                }    
+            break;
+
+            default:
+                printf("Mauvais arguments !");
+            break;
+        }
+    }
 /*
 void afficher_base(FILE *f){
     fseek(f,0,SEEK_SET);
