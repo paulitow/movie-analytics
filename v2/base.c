@@ -10,7 +10,7 @@ void menu(){ // affichage simple du menu
     printf("2 : Chercher un Film dans la base\n");
     printf("3 : Récupérer l'ID d'un film\n");
     printf("4 : Lister les films par genre\n");
-    printf("5 : CLister les films par année\n");
+    printf("5 : Lister les films par année\n");
     printf("0 : Quitter...\n");
     printf("Votre choix ?\n");
 
