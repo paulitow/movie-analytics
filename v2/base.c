@@ -26,7 +26,7 @@ void init_bdd(FILE * f, int *n, Film *film){
     while(fgets(l, 2555, f)){
          
         (film+i)->id = atoi(strtok(l,";")); // ID
-        printf(" ID : %d\n", film[i].id);
+        printf("ID : %d\n", film[i].id);
 
         //printf("%s",strtok(NULL,";")); 
         strcpy((film+i)->titre,strtok(NULL,";"));// Titre
@@ -41,6 +41,22 @@ void init_bdd(FILE * f, int *n, Film *film){
 
         (film+i)->duree = atoi(strtok(NULL,";")); // Durée
         printf("Durée : %d\n", film[i].duree);
+
+        strcpy((film+i)->pays,strtok(NULL,";"));// Pays
+        printf("Pays : %s\n", film[i].pays);
+
+        strcpy((film+i)->real,strtok(NULL,";"));// Réalisateur
+        printf("Réalisateur : %s\n", film[i].real);
+
+        strcpy((film+i)->acteurs,strtok(NULL,";"));// Acteurs
+        printf("Acteurs : %s\n", film[i].acteurs);
+
+        (film+i)->note = atoi(strtok(NULL,";")); // note moyenne
+        printf("Note moyenne : %d\n", film[i].note);
+
+        (film+i)->nb_vote = atoi(strtok(NULL,";")); // nombre de vote
+        printf("Nombre de vote : %d\n", film[i].nb_vote);
+
 
         printf("----------\n");
         i++; // compteur tb de structure
