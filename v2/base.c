@@ -17,7 +17,7 @@ void menu(){ // affichage simple du menu
 }
 
 void init_bdd(FILE * f, int *n, Film *film){
-    char l[255];
+    char l[2555];
     char *o;
     
     int i=0;
@@ -25,20 +25,17 @@ void init_bdd(FILE * f, int *n, Film *film){
     printf("NB ligne : %d", *n);
     while(fgets(l, 255, f)){
          
-        //printf("%s",strtok(l,";"));
         (film+i)->id = atoi(strtok(l,";"));
+
         printf(" ID : %d\n", film[i].id);
-        //film[i].id = atoi(strtok(l,";"));
-        //(f_base[i]->id)=strtok(l,";");
+
         printf("%s",strtok(NULL,";"));
-        //strcpy((film+i)->titre, strtok(NULL,";"));
-
+        
         (film+i)->annee = atoi(strtok(NULL,";"));
-        printf("Annee : %d", film[i].annee);
 
+        printf("\nAnnee : %d", film[i].annee);
 
-
-        printf("----------\n");
+        printf("\n----------\n");
         i++;
     }
 }
