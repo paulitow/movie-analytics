@@ -379,7 +379,8 @@ int chercher_id_film(Film *film, char *nom, int *i){
             break;
 
             case 1:
-                printf("Disponible au prochain commit ;)\n");
+                printf("Ajout au fichier...\n");
+                fprintf(f,"%d;%s;%d;%s;%d;%s;%s;%s;%d;%d;",film[id].id,film[id].titre,film[id].annee,film[id].genre,film[id].duree,film[id].pays,film[id].real,film[id].acteurs,film[id].note,film[id].nb_vote);
             break;
         }    
     }
