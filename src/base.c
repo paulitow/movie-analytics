@@ -368,7 +368,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
                 film[id].note=new_film->note;
                 film[id].nb_vote=new_film->nb_vote;
                 *i=id;
-            break;
+            break; // le film est ajouté !
         }
         printf("Voulez-vous sauvegarder la base dans le fichier CSV ?\n");
         printf("0 - NON || 1 - OUI\n");
