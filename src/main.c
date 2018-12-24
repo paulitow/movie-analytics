@@ -98,6 +98,10 @@ int main() {
 
         break;
 
+        case 9:
+            extract_base(f_bdd, &i);
+        break;
+
         default:
         break;
     }

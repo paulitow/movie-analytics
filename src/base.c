@@ -15,6 +15,7 @@ void menu(){ // affichage simple du menu
     printf("6 : Lister les films par pays\n");
     printf("7 : !! LE BONUS !!\n");
     printf("8 : Ajouter un film à la base\n");
+    printf("9 : Sauvegarder la base dans un fichier CSV\n");
     printf("0 : Quitter...\n");
     printf("Votre choix ?\n");
 
@@ -527,19 +528,25 @@ int chercher_id_film(Film *film, char *nom, int *i){
         printf("8 : Suède\n");
         printf("9 : Canada\n");
     }
-/*
-void afficher_base(FILE *f){
-    fseek(f,0,SEEK_SET);
-    printf("NB ligne : %d", n);
-    while(fgets(l, 255, f)){
-        //printf("%s",l);
-        o = strtok(l,";");
-        while(o!=NULL){
-            printf("%s\n",o);
-            o = strtok(NULL,";");
-        }
+
+    void supprimer_film(FILE *f , Film *del_film){ //A commleter
+        int id;
+        id=del_film->id;
+        fseek(f,id,SEEK_SET);
+
     }
-}*/
+
+    void extract_base(Film *film, int *i){
+        FILE *f_save=NULL;
+        int id=0;
+        f_save=fopen("./bdd_save.csv", "w+");
+        while(id<*i){
+            printf("Ajout au fichier du film %s...\n", film[id].titre);
+                fprintf(f_save,"%d;%s;%d;%s;%d;%s;%s;%s;%d;%d;",film[id].id,film[id].titre,film[id].annee,film[id].genre,film[id].duree,film[id].pays,film[id].real,film[id].acteurs,film[id].note,film[id].nb_vote);
+            id++;
+        }
+        printf("%d films sauvegardés dans le fichier bdd_save.csv !\n", id);
+    }
 
 void bonus(){
 
