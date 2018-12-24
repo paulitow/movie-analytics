@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "base.h"
+#include "user.h"
 //#include "menu.c"
 
 void menu(){ // affichage simple du menu

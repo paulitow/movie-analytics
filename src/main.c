@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "base.h"
+#include "user.h"
 /*#########################V1.0.0####################
     Auteurs : Paul Moyse - Damien Desmarets
     
