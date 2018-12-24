@@ -31,9 +31,9 @@ int main() {
   char nom[50];
   n = nb_ligne(f);
   //Film *f_base[n];
-  Film *f_bdd=NULL;
+  Film *f_bdd=NULL, *new_film=NULL;
   f_bdd = (Film*)malloc(sizeof(Film)*n); // On Alloue la taille necessaire à l'init de la base
-
+  new_film = (Film*)malloc(sizeof(Film));
   int choix;
   do {
     menu(); // affichage simple du menu
@@ -90,6 +90,12 @@ int main() {
         break;
         case 7:
             bonus();
+        break;
+
+        case 8:
+            creer_film(new_film, &i);
+            ajouter_film(f, f_bdd, new_film, &i);
+
         break;
 
         default:

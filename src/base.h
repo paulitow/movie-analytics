@@ -13,6 +13,10 @@ int nb_ligne(FILE *f);
 void chercher_film(Film *film, char *nom, int *i);
 int chercher_id_film(Film *film, char *nom, int *i);
 void lister_film(Film *film, int arg, int *i);
+void ajouter_film(FILE *f, Film *film, Film *new_film, int *i);
+void creer_film(Film *new_film, int *id);
+void ls_genre();
+void ls_pays();
 void bonus(); //???????????
 
 #endif // ne rien mettre après !
