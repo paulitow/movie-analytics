@@ -563,7 +563,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
         f_save=fopen("./bdd_save.csv", "w+");
         while(id<*i){
             printf("Ajout au fichier du film %s...\n", film[id].titre);
-                fprintf(f_save,"\n%d;%s;%d;%s;%d;%s;%s;%s;%d;%d;",film[id].id,film[id].titre,film[id].annee,film[id].genre,film[id].duree,film[id].pays,film[id].real,film[id].acteurs,film[id].note,film[id].nb_vote);
+                fprintf(f_save,"%d;%s;%d;%s;%d;%s;%s;%s;%d;%d;\n",film[id].id,film[id].titre,film[id].annee,film[id].genre,film[id].duree,film[id].pays,film[id].real,film[id].acteurs,film[id].note,film[id].nb_vote);
             id++;
         }
         printf("%d films sauvegardés dans le fichier bdd_save.csv !\n", id);
