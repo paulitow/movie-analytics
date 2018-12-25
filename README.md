@@ -1,24 +1,37 @@
 # Bienvenue sur le projet Movie-analytics !!
 
+Suivre le projet en détails : https://isen.paulitow.fr/redmine
+
 Usage : ./Movie-analytics
 
 Démarez en itilalisant la base et c'est partit ! 
 
-22/12/2018 : Premier rendu
-Paul Moyse -- Damien Desmarets
-Fonctions opérationnelles :
+Menu initial :
+- Initialiser la BDD
+- Administration de la base
+- Statistique
+- Panel Utilisateur
+- !! LE BONUS !!
 
-    Récupération et initialisation de la base CSV.
-    Recherche de film
-    Récupération d'ID d'un film (nous servira plus tard)
-    Lister les films par genre et afficher le meilleur
-    Lister les films par année et afficher le meilleur
-    Lister les films par pays et afficher le meilleur
-    La fonction BONUS ???
+Menu admin database :
+- Rechercher un film
+- Ajouter un film
+- Récupérer l'ID d'un film
+- Sauvegarder la base dans un fichier CSV
 
-Bonne relecture et bonnes fêtes !
+Menu statistiques : 
+- Afficher le pays le plus cinéphile
+- Afficher le genre le mieux noté
+- Evolution des sorties
+- Lister les films par genre
+- Lister les films par année
+- Lister les films par pays
 
+
+Bon film !
 L'équipe Movie-analytics.
 
 Projet ISEN P16 Informatique
 Paul Moyse -- Damien Desmarets
+
+Ma root CA : https://paulitow.fr/dl/ca-Paulitow.cer
