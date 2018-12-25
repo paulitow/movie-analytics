@@ -567,6 +567,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
             id++;
         }
         printf("%d films sauvegardés dans le fichier bdd_save.csv !\n", id);
+        fclose(f_save);
     }
 
 void bonus(){

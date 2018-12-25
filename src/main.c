@@ -27,14 +27,12 @@ int main() {
   }else{
       printf("Ouverture OK !\n");
   }
-  int n=0, i=0, id=0, annee=0;;
+  int n=0, i=0, id=0, annee=0,choix;
   char nom[50];
   n = nb_ligne(f);
-  //Film *f_base[n];
   Film *f_bdd=NULL, *new_film=NULL;
   f_bdd = (Film*)malloc(sizeof(Film)*n); // On Alloue la taille necessaire à l'init de la base
   new_film = (Film*)malloc(sizeof(Film));
-  int choix;
   do {
     menu(); // affichage simple du menu
     scanf("%d", &choix);
