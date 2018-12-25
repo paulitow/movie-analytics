@@ -3,18 +3,10 @@
 #include <string.h>
 #include "base.h"
 #include "user.h"
-/*#########################V1.0.0####################
+/*#########################V1.0.1####################
     Auteurs : Paul Moyse - Damien Desmarets
     
-    Fonctions opérationnelles :
 
-    Récupération et initialisation de la base CSV.
-    Recherche de film
-    Récupération d'ID d'un film (nous servira plus tard)
-    Lister les films par genre et afficher le meilleur
-    Lister les films par année et afficher le meilleur
-    Lister les films par pays et afficher le meilleur
-    La fonction BONUS ???
 
 *///#################################################
 
