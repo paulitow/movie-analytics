@@ -6,20 +6,31 @@ Usage : ./Movie-analytics
 
 Démarez en itilalisant la base et c'est partit ! 
 
-22/12/2018 : Premier rendu
-Paul Moyse -- Damien Desmarets
-Fonctions opérationnelles :
+Menu initial :
+1 : Initialiser la BDD
+2 : Administration de la base
+3 : Statistique
+4 : Panel Utilisateur
+5 : !! LE BONUS !!
 
-    Récupération et initialisation de la base CSV.
-    Recherche de film
-    Récupération d'ID d'un film (nous servira plus tard)
-    Lister les films par genre et afficher le meilleur
-    Lister les films par année et afficher le meilleur
-    Lister les films par pays et afficher le meilleur
-    La fonction BONUS ???
+Menu admin database :
+------DATABASE------
+1 : Rechercher un film
+2 : Ajouter un film
+3 : Récupérer l'ID d'un film
+4 : Sauvegarder la base dans un fichier CSV
 
-Bonne relecture et bonnes fêtes !
+Menu statisistiques : 
+------STATISTIQUES------
+1 : Afficher le pays le plus cinéphile
+2 : Afficher le genre le mieux noté
+3 : Evolution des sorties
+4 : Lister les films par genre
+5 : Lister les films par année
+6 : Lister les films par pays
 
+
+Bon film !
 L'équipe Movie-analytics.
 
 Projet ISEN P16 Informatique
