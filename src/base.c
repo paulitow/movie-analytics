@@ -581,7 +581,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
            sorties[i3]=0;
            while(i2<*i){
                if (film[i2].annee==cpt_ecart){
-                   sorties[i3]++;
+                   sorties[i3]++; // cela marche ?
                }
                i2++;
            }
