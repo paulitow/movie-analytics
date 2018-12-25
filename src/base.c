@@ -570,6 +570,33 @@ int chercher_id_film(Film *film, char *nom, int *i){
         fclose(f_save);
     }
 
+    void evol_sortie(Film *film, int *i, int dep){
+       int ecart=0, cpt_ecart=0, i2=0, i3=0;
+
+       ecart=2018-dep;
+       int sorties[ecart+1];
+       cpt_ecart=ecart;
+
+       while(cpt_ecart<2018){
+           sorties[i3]=0;
+           while(i2<*i){
+               if (film[i2].annee==cpt_ecart){
+                   sorties[i3]++;
+               }
+               i2++;
+           }
+           i2=0;
+           i3++;
+           cpt_ecart++;
+        }
+        cpt_ecart=2018-dep;
+        i2=0;
+        while(cpt_ecart<2018){
+            printf("%d\n", sorties[i2]);
+            i2++;
+            cpt_ecart++;
+        }
+    }
 void bonus(){
 
 printf("               X   X   XXXXX   XXXXX   XXXXX   X   X\n");

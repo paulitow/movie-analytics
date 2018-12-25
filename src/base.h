@@ -19,6 +19,7 @@ void ajouter_film(FILE *f, Film *film, Film *new_film, int *i);
 void creer_film(Film *new_film, int *id);
 void supprimer_film(FILE *f , Film *del_film);
 void extract_base(Film *film, int *i);
+void evol_sortie(Film *film, int *i, int dep);
 void ls_genre();
 void ls_pays();
 void bonus(); //???????????
