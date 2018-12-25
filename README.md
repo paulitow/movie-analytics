@@ -7,27 +7,25 @@ Usage : ./Movie-analytics
 Démarez en itilalisant la base et c'est partit ! 
 
 Menu initial :
-1 : Initialiser la BDD
-2 : Administration de la base
-3 : Statistique
-4 : Panel Utilisateur
-5 : !! LE BONUS !!
+- Initialiser la BDD
+- Administration de la base
+- Statistique
+- Panel Utilisateur
+- !! LE BONUS !!
 
 Menu admin database :
-------DATABASE------
-1 : Rechercher un film
-2 : Ajouter un film
-3 : Récupérer l'ID d'un film
-4 : Sauvegarder la base dans un fichier CSV
+- Rechercher un film
+- Ajouter un film
+- Récupérer l'ID d'un film
+- Sauvegarder la base dans un fichier CSV
 
-Menu statisistiques : 
-------STATISTIQUES------
-1 : Afficher le pays le plus cinéphile
-2 : Afficher le genre le mieux noté
-3 : Evolution des sorties
-4 : Lister les films par genre
-5 : Lister les films par année
-6 : Lister les films par pays
+Menu statistiques : 
+- Afficher le pays le plus cinéphile
+- Afficher le genre le mieux noté
+- Evolution des sorties
+- Lister les films par genre
+- Lister les films par année
+- Lister les films par pays
 
 
 Bon film !
