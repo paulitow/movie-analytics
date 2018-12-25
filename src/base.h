@@ -8,6 +8,8 @@ typedef struct {
 
 
 void menu();
+void menu_stat();
+void menu_base();
 int init_bdd(FILE * f, int *n, Film *film);
 int nb_ligne(FILE *f);
 void chercher_film(Film *film, char *nom, int *i);

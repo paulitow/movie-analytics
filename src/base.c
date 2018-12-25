@@ -8,17 +8,35 @@
 void menu(){ // affichage simple du menu
     printf("------MENU------\n");
     printf("1 : Initialiser la BDD\n");
-    printf("2 : Chercher un Film dans la base\n");
-    printf("3 : Récupérer l'ID d'un film\n");
-    printf("4 : Lister les films par genre\n");
-    printf("5 : Lister les films par année\n");
-    printf("6 : Lister les films par pays\n");
-    printf("7 : !! LE BONUS !!\n");
-    printf("8 : Ajouter un film à la base\n");
-    printf("9 : Sauvegarder la base dans un fichier CSV\n");
+    printf("2 : Administration de la base\n");
+    printf("3 : Statistique\n");
+    printf("4 : Panel Utilisateur\n");
+    printf("5 : !! LE BONUS !!\n");
     printf("0 : Quitter...\n");
     printf("Votre choix ?\n");
 
+}
+
+void menu_stat(){
+    printf("------STATISTIQUES------\n");
+    printf("1 : Afficher le pays le plus cinéphile\n");
+    printf("2 : Afficher le genre le mieux noté\n");
+    printf("3 : Evolution des sorties\n");
+    printf("4 : Lister les films par genre\n");
+    printf("5 : Lister les films par année\n");
+    printf("6 : Lister les films par pays\n");
+    printf("0 : Quitter...\n");
+    printf("Votre choix ?\n");
+}
+
+void menu_base(){
+    printf("------DATABASE------\n");
+    printf("1 : Rechercher un film\n");
+    printf("2 : Ajouter un film\n");
+    printf("3 : Récupérer l'ID d'un film\n");
+    printf("4 : Sauvegarder la base dans un fichier CSV\n");
+    printf("0 : Quitter...\n");
+    printf("Votre choix ?\n");
 }
 
 int init_bdd(FILE * f, int *n, Film *film){ // retrourne le nombre d'éléments en base et init
@@ -211,6 +229,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
                         tmp++; //Compte le nombre de film du genre
                         if (film[i2].note>note){
                             best_film=film[i2];
+                            note=film[i2].note;
                         }
                     }
                     i2++;
@@ -239,6 +258,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
                         tmp++; //Compte le nombre de film de cette année
                         if (film[i2].note>note){
                             best_film=film[i2];
+                            note=film[i2].note;
                         }
                     }
                     i2++;
@@ -316,6 +336,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
                         tmp++; //Compte le nombre de film de cette année
                         if (film[i2].note>note){
                             best_film=film[i2];
+                            note=film[i2].note;
                         }
                     }
                     i2++;
@@ -381,7 +402,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
 
             case 1:
                 printf("Ajout au fichier...\n");
-                fprintf(f,"%d;%s;%d;%s;%d;%s;%s;%s;%d;%d;",film[id].id,film[id].titre,film[id].annee,film[id].genre,film[id].duree,film[id].pays,film[id].real,film[id].acteurs,film[id].note,film[id].nb_vote);
+                fprintf(f,"%d;%s;%d;%s;%d;%s;%s;%s;%d;%d;\n",film[id].id,film[id].titre,film[id].annee,film[id].genre,film[id].duree,film[id].pays,film[id].real,film[id].acteurs,film[id].note,film[id].nb_vote);
             break;
         }    
     }
@@ -542,7 +563,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
         f_save=fopen("./bdd_save.csv", "w+");
         while(id<*i){
             printf("Ajout au fichier du film %s...\n", film[id].titre);
-                fprintf(f_save,"%d;%s;%d;%s;%d;%s;%s;%s;%d;%d;",film[id].id,film[id].titre,film[id].annee,film[id].genre,film[id].duree,film[id].pays,film[id].real,film[id].acteurs,film[id].note,film[id].nb_vote);
+                fprintf(f_save,"\n%d;%s;%d;%s;%d;%s;%s;%s;%d;%d;",film[id].id,film[id].titre,film[id].annee,film[id].genre,film[id].duree,film[id].pays,film[id].real,film[id].acteurs,film[id].note,film[id].nb_vote);
             id++;
         }
         printf("%d films sauvegardés dans le fichier bdd_save.csv !\n", id);

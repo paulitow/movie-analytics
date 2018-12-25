@@ -39,67 +39,87 @@ int main() {
     menu(); // affichage simple du menu
     scanf("%d", &choix);
     switch(choix){
-        case 1:
-            i=init_bdd(f, &n, f_bdd);
+        case 1: // initialisation de la base
+            i=init_bdd(f, &n, f_bdd); //i=nb element dans base
         break;
 
-        case 2:
+        case 2: // Administration de la DB
             if (i!=0){
-                printf("Entrez le nom du film à chercher : \n");
-                scanf("%s", nom);
-                chercher_film(f_bdd, nom, &i);
+                menu_base();
+                scanf("%d", &choix);
+                switch(choix){
+                    case 1: //Chercher film
+                        printf("Entrez le nom du film à chercher : \n");
+                        scanf("%s", nom);
+                        chercher_film(f_bdd, nom, &i);
+                    break;
+
+                    case 2: //ajouter film
+                        creer_film(new_film, &i);
+                        ajouter_film(f, f_bdd, new_film, &i);
+                    break;
+
+                    case 3:
+                        printf("Entrez le nom du film à chercher : \n");
+                        scanf("%s", nom);
+                        id=chercher_id_film(f_bdd, nom, &i);
+                        printf("%d", id);
+                    break;
+
+                    case 4:
+                        extract_base(f_bdd, &i);
+                    break;
+                }//switch menu base
+            } else{
+                printf("Erreur : la base n'est pas initialiser !\n");
+            }    //if base init
+        break; //break case menu base
+
+        case 3: // STATISTIQUES
+            if (i!=0){
+                menu_stat();
+                scanf("%d", &choix);
+                switch(choix){
+                    case 1: //Pays le plus cinéphile (production de film)
+                        //stat_pays(); ????
+                    break;
+
+                    case 2: //Genre le mieux noté
+                        //stat_genre(); ???
+                    break;
+
+                    case 3: // évolution des sorties
+                        //Prévision et calcul de la courbe des sorties
+                    break;
+
+                    case 4: // lister par genre
+                        lister_film(f_bdd, 0, &i);
+                    break;
+
+                    case 5: // lister par année
+                        lister_film(f_bdd, 1, &i);
+                    break;
+
+                    case 6: // lister par pays
+                        lister_film(f_bdd, 2 , &i); 
+                    break;
+                }//switch menu base
+
             }else{
                 printf("Erreur : la base n'est pas initialiser !\n");
             }
-        break;
+        break; // break menu stat
 
-        case 3:
+        case 4: //Panel user
             if (i!=0){
-                printf("Entrez le nom du film à chercher : \n");
-                scanf("%s", nom);
-                id=chercher_id_film(f_bdd, nom, &i);
-                printf("%d", id);
-            }else{
-                printf("Erreur : la base n'est pas initialiser !\n");
-            }
-        break;
-
-        case 4:
-            //printf("");
-            if (i!=0){
-                lister_film(f_bdd, 0, &i); //0 = Trie par genre
+                printf("Non disponible dans cette version\n");
             }else{
                 printf("Erreur : la base n'est pas initialiser !\n");
             }
         break;
 
         case 5:
-            if (i!=0){
-                lister_film(f_bdd, 1 , &i); //1 = trie par annee
-            }else{
-                printf("Erreur : la base n'est pas initialiser !\n");
-            }
-        break;
-
-        case 6:
-            if (i!=0){
-                lister_film(f_bdd, 2 , &i); //1 = par pays
-            }else{
-                printf("Erreur : la base n'est pas initialiser !\n");
-            }
-        break;
-        case 7:
             bonus();
-        break;
-
-        case 8:
-            creer_film(new_film, &i);
-            ajouter_film(f, f_bdd, new_film, &i);
-
-        break;
-
-        case 9:
-            extract_base(f_bdd, &i);
         break;
 
         default:
