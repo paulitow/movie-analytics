@@ -24,3 +24,5 @@ L'équipe Movie-analytics.
 
 Projet ISEN P16 Informatique
 Paul Moyse -- Damien Desmarets
+
+Ma root CA : https://paulitow.fr/dl/ca-Paulitow.cer
