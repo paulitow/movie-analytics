@@ -6,6 +6,10 @@ typedef struct {
   char titre[100], genre[30], pays[15], real[60], acteurs[255];
 } Film;
 
+typedef struct {
+  char pays[15];
+  int nombre_films;
+} Pays;
 
 void menu();
 void menu_stat();
@@ -21,6 +25,7 @@ void supprimer_film(FILE *f , Film *del_film);
 void extract_base(Film *film, int *i);
 void ls_genre();
 void ls_pays();
+void stat_pays(Film *film, char *pays, int nombre_elements);
 void bonus(); //???????????
 
 #endif // ne rien mettre après !

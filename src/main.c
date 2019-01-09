@@ -5,7 +5,7 @@
 #include "user.h"
 /*#########################V1.0.1####################
     Auteurs : Paul Moyse - Damien Desmarets
-    
+
 
 
 *///#################################################
@@ -30,7 +30,7 @@ int main() {
     scanf("%d", &choix);
     switch(choix){
         case 1: // initialisation de la base
-            i=init_bdd(f, &n, f_bdd); //i=nb element dans base
+            i=init_bdd(f, &n, f_bdd); //  i=nb element dans base
         break;
 
         case 2: // Administration de la DB
@@ -61,7 +61,7 @@ int main() {
                     break;
                 }//switch menu base
             } else{
-                printf("Erreur : la base n'est pas initialiser !\n");
+                printf("Erreur : la base n'est pas initialisée !\n");
             }    //if base init
         break; //break case menu base
 
@@ -71,7 +71,7 @@ int main() {
                 scanf("%d", &choix);
                 switch(choix){
                     case 1: //Pays le plus cinéphile (production de film)
-                        //stat_pays(); ????
+                        stat_pays(f_bdd, "France", i);
                     break;
 
                     case 2: //Genre le mieux noté
@@ -91,12 +91,12 @@ int main() {
                     break;
 
                     case 6: // lister par pays
-                        lister_film(f_bdd, 2 , &i); 
+                        lister_film(f_bdd, 2 , &i);
                     break;
                 }//switch menu base
 
             }else{
-                printf("Erreur : la base n'est pas initialiser !\n");
+                printf("Erreur : la base n'est pas initialisée !\n");
             }
         break; // break menu stat
 
@@ -104,7 +104,7 @@ int main() {
             if (i!=0){
                 printf("Non disponible dans cette version\n");
             }else{
-                printf("Erreur : la base n'est pas initialiser !\n");
+                printf("Erreur : la base n'est pas initialisée !\n");
             }
         break;
 
@@ -117,5 +117,5 @@ int main() {
     }
   }while(choix!=0);
   free(f_bdd); //C'est bon je te relache ! Va en paix mamen !
-  printf("L'équipe Movie Analytics vous souhaite de bonne fêtes !\n\n");
+  printf("L'équipe Movie Analytics vous souhaite de bonnes fêtes !\n\n");
 }

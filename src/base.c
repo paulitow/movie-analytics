@@ -47,11 +47,11 @@ int init_bdd(FILE * f, int *n, Film *film){ // retrourne le nombre d'éléments 
 
     fseek(f,0,SEEK_SET);
     while(fgets(l, 2555, f)){ //Je ne sais pas si c'est la bonne valeur...
-         
+
         (film+i)->id = atoi(strtok(l,";")); // ID
         printf("ID : %d\n", film[i].id);
 
-        //printf("%s",strtok(NULL,";")); 
+        //printf("%s",strtok(NULL,";"));
         strcpy((film+i)->titre,strtok(NULL,";"));// Titre
         printf("Titre : %s\n", film[i].titre);
 
@@ -103,7 +103,7 @@ int nb_ligne(FILE *f){
         n++;
     }
     return n;
-    
+
 }
 
 void chercher_film(Film *film, char *nom, int *i){
@@ -194,7 +194,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
                         strcpy(genre, "Thriller");
                     break;
 
-                    case 3: 
+                    case 3:
                         strcpy(genre, "Adventure");
                     break;
 
@@ -223,7 +223,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
                     break;
                 }
                 //une fois le genre initialiser, on peux référencer les films
-                
+
                 while(i2<=*i){
                     if (strcmp(genre, film[i2].genre)==0){
                         tmp++; //Compte le nombre de film du genre
@@ -272,7 +272,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
                 printf("----------\n");
 
             break;
-                
+
             case 2: //recherche par pays
                 i2=0;
                 note=0;
@@ -302,7 +302,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
                         strcpy(genre, "United States");
                     break;
 
-                    case 3: 
+                    case 3:
                         strcpy(genre, "Germany");
                     break;
 
@@ -404,7 +404,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
                 printf("Ajout au fichier...\n");
                 fprintf(f,"%d;%s;%d;%s;%d;%s;%s;%s;%d;%d;\n",film[id].id,film[id].titre,film[id].annee,film[id].genre,film[id].duree,film[id].pays,film[id].real,film[id].acteurs,film[id].note,film[id].nb_vote);
             break;
-        }    
+        }
     }
 
     void creer_film(Film *new_film, int *id){
@@ -432,7 +432,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
                         strcpy(genre, "Thriller");
                     break;
 
-                    case 3: 
+                    case 3:
                         strcpy(genre, "Adventure");
                     break;
 
@@ -478,7 +478,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
                         strcpy(genre, "United States");
                     break;
 
-                    case 3: 
+                    case 3:
                         strcpy(genre, "Germany");
                     break;
 
@@ -518,7 +518,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
         new_id = *id+1;
         new_film->id=new_id;
 
-        
+
 
     }
 
@@ -569,6 +569,44 @@ int chercher_id_film(Film *film, char *nom, int *i){
         printf("%d films sauvegardés dans le fichier bdd_save.csv !\n", id);
         fclose(f_save);
     }
+
+    void stat_pays(Film *film, char *pays, int nombre_elements) {
+
+      /* 1. Compter le nombre de pays dans la base.
+      2. Afficher le nombre de films par pays à l'écran.
+      3. Comparer les résultats et conserver le plus grand.
+      4. Afficher le plus grand résultat ainsi  que le pays en question.
+    */
+    Pays *pays = NULL;
+    int nombre_pays;
+    int j = 0;
+
+    pays = (Pays*)malloc(sizeof(Pays));
+
+    for (int i = 0 ; i < nombre_elements ; i++) {
+
+      j = 0;
+
+      while ((j < nombre_pays) && (strcmp(pays[j].pays, film[i].pays) == 0)) {
+
+        j++;
+      }
+
+      if (strcmp(pays[j].pays, film[i].pays) != 0) {
+
+        nombre_pays++;
+        pays = (Pays*)malloc(sizeof(Pays));
+        pays[nombre_pays].pays = film[i].pays;
+        pays[nombre_pays].nombre_films++;
+      }
+      else pays[j].nombre_films++;
+    }
+
+    for (int i = 0 ; i < nombre_pays ; i++) {
+
+      printf("Le pays %s : %d films\n", pays[i].pays, pays[i].nombre_films);
+    }
+  }
 
 void bonus(){
 
