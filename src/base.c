@@ -570,7 +570,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
         fclose(f_save);
     }
 
-    void stat_pays(Film *film, char *pays, int nombre_elements) {
+    void stat_pays(Film *film, int nombre_elements) {
 
       /* 1. Compter le nombre de pays dans la base.
       2. Afficher le nombre de films par pays à l'écran.
@@ -596,7 +596,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
 
         nombre_pays++;
         pays = (Pays*)malloc(sizeof(Pays));
-        pays[nombre_pays].pays = film[i].pays;
+        strcpy(pays[nombre_pays].pays, film[i].pays);
         pays[nombre_pays].nombre_films++;
       }
       else pays[j].nombre_films++;

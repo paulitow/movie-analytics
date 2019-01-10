@@ -71,7 +71,7 @@ int main() {
                 scanf("%d", &choix);
                 switch(choix){
                     case 1: //Pays le plus cinéphile (production de film)
-                        stat_pays(f_bdd, "France", i);
+                        stat_pays(f_bdd, i);
                     break;
 
                     case 2: //Genre le mieux noté

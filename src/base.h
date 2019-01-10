@@ -25,7 +25,7 @@ void supprimer_film(FILE *f , Film *del_film);
 void extract_base(Film *film, int *i);
 void ls_genre();
 void ls_pays();
-void stat_pays(Film *film, char *pays, int nombre_elements);
+void stat_pays(Film *film, int nombre_elements);
 void bonus(); //???????????
 
 #endif // ne rien mettre après !
