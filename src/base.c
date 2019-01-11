@@ -250,7 +250,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
                 printf("Entrez l'année recherchée :\n");
                 scanf("%d", &rep);
                 if (rep>2018){
-                    printf("!! Eh Oh on peut pas aller plus vite que la musique !\n!! Regarde deja ceux de 2018 non ?\n");
+                    printf("!! Eh Oh on peut pas aller plus vite que la musique !\n!! Regardes deja ceux de 2018 non ?\n");
                     rep=2018;
                 }
                 while(i2<=*i){
@@ -570,33 +570,33 @@ int chercher_id_film(Film *film, char *nom, int *i){
         fclose(f_save);
     }
 
-    void stat_pays(Film *film, char *pays, int nombre_elements) {
+    void stat_pays(Film *film, char *buffer, int *nombre_elements) {
 
-      /* 1. Compter le nombre de pays dans la base.
+    /* 1. Compter le nombre de pays dans la base.
       2. Afficher le nombre de films par pays à l'écran.
       3. Comparer les résultats et conserver le plus grand.
-      4. Afficher le plus grand résultat ainsi  que le pays en question.
-    */
+      4. Afficher le plus grand résultat ainsi  que le pays en question. */
+
     Pays *pays = NULL;
-    int nombre_pays;
-    int j = 0;
+    int nombre_pays = 0;
 
-    pays = (Pays*)malloc(sizeof(Pays));
+    pays = (Pays*)malloc(sizeof(Pays)); // Adapte la taille de la liste des pays.
 
-    for (int i = 0 ; i < nombre_elements ; i++) {
+    for (int i = 0 ; i < nombre_elements ; i++) { // Parcours le tableau de structures.
 
-      j = 0;
+      int j = 0;
+      strcpy(pays, film[i].pays); // Extraie le pays de la ligne du tableau et le stocke dans la variable pays.
 
-      while ((j < nombre_pays) && (strcmp(pays[j].pays, film[i].pays) == 0)) {
+      while ((j < nombre_pays) && (strcmp(pays[j].pays, pays) == 0)) { // Parcours le tableau pour compter le nombre de pays. film[i].pays
 
         j++;
       }
 
-      if (strcmp(pays[j].pays, film[i].pays) != 0) {
+      if (strcmp(pays[j].pays, pays) != 0) { // Si le pays n'existe pas, on l'ajoute.
 
         nombre_pays++;
         pays = (Pays*)malloc(sizeof(Pays));
-        pays[nombre_pays].pays = film[i].pays;
+        sprintf(pays[nombre_pays].pays, "Le même format que  %s", film[i].pays);
         pays[nombre_pays].nombre_films++;
       }
       else pays[j].nombre_films++;

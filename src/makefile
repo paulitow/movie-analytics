@@ -9,6 +9,6 @@ base.o:
 
 user.o:
 	gcc -c user.c
-	
+
 clean:
 	rm *.o ../Movie-analytics
