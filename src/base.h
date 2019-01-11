@@ -25,11 +25,8 @@ void supprimer_film(FILE *f , Film *del_film);
 void extract_base(Film *film, int *i);
 void ls_genre();
 void ls_pays();
-<<<<<<< HEAD
-void stat_pays(Film *film, char *buffer, int nombre_elements);
-=======
-void stat_pays(Film *film, int nombre_elements);
->>>>>>> 77747c8db75f5fcec6ebb6b55207933a79f7a603
+//void stat_pays(Film *film, char *buffer, int nombre_elements);
+//void stat_pays(Film *film, int nombre_elements);
 void bonus(); //???????????
 
 #endif // ne rien mettre après !
