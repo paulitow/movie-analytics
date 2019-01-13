@@ -80,7 +80,7 @@ int main() {
                     break;
 
                     case 3: // évolution des sorties
-                        //Prévision et calcul de la courbe des sorties
+                        evolution_sortie(f_bdd, 2000, &i);
                     break;
 
                     case 4: // lister par genre

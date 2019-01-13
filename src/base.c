@@ -39,6 +39,34 @@ void menu_base(){
     printf("Votre choix ?\n");
 }
 
+    void ls_genre(){
+        printf("Choix des genres :\n");
+        printf("0 : Comédie\n");
+        printf("1 : Drame\n");
+        printf("2 : Thriller\n");
+        printf("3 : Aventure\n");
+        printf("4 : Action\n");
+        printf("5 : Western\n");
+        printf("6 : Horreur\n");
+        printf("7 : Mythologie\n");
+        printf("8 : Biographie\n");
+        printf("9 : Musicale\n");
+    }
+
+    void ls_pays(){
+        printf("Choix des pays :\n");
+        printf("0 : France\n");
+        printf("1 : Italie\n");
+        printf("2 : USA\n");
+        printf("3 : Allemagne\n");
+        printf("4 : Suisse\n");
+        printf("5 : Angleterre\n");
+        printf("6 : Mexique\n");
+        printf("7 : Russie\n");
+        printf("8 : Suède\n");
+        printf("9 : Canada\n");
+    }
+
 int init_bdd(FILE * f, int *n, Film *film){ // retrourne le nombre d'éléments en base et init
     // filmtv_ID;film_title;year;genre;duration;country;director;actors;avg_vote;votes;
     char l[2555];
@@ -522,33 +550,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
 
     }
 
-    void ls_genre(){
-        printf("Choix des genres :\n");
-        printf("0 : Comédie\n");
-        printf("1 : Drame\n");
-        printf("2 : Thriller\n");
-        printf("3 : Aventure\n");
-        printf("4 : Action\n");
-        printf("5 : Western\n");
-        printf("6 : Horreur\n");
-        printf("7 : Mythologie\n");
-        printf("8 : Biographie\n");
-        printf("9 : Musicale\n");
-    }
 
-    void ls_pays(){
-        printf("Choix des pays :\n");
-        printf("0 : France\n");
-        printf("1 : Italie\n");
-        printf("2 : USA\n");
-        printf("3 : Allemagne\n");
-        printf("4 : Suisse\n");
-        printf("5 : Angleterre\n");
-        printf("6 : Mexique\n");
-        printf("7 : Russie\n");
-        printf("8 : Suède\n");
-        printf("9 : Canada\n");
-    }
 
     void supprimer_film(FILE *f , Film *del_film){ //A commleter
         int id;
@@ -607,6 +609,32 @@ int chercher_id_film(Film *film, char *nom, int *i){
       printf("Le pays %s : %d films\n", pays[i].pays, pays[i].nombre_films);
     }
   } */
+
+
+void evolution_sortie(Film *film, int from_year, int *i) {
+    Annee *annee = NULL;
+    int firs_year=0, delta=0, i3=0;
+    firs_year=film[0].annee;
+    delta=2019-from_year;
+    printf("%d", delta);
+    annee=(Annee*)malloc((sizeof(Annee)*delta));
+    while(delta>0){
+        annee[i3].year=from_year;
+        for (int i2=0; *i>i2; i2++) {
+            if (film[i2].annee==from_year){
+                (annee[i3].nb_film)++;
+                //printf("Année %d || film : %s\n", from_year, film[i2].titre);
+            }
+        }
+        printf("Pour l'année %d : %d Films\n",from_year,annee[i3].nb_film);
+
+
+        from_year++;
+        i3++;
+        delta--;
+    }    
+}
+
 
 void bonus(){
 
