@@ -611,14 +611,14 @@ int chercher_id_film(Film *film, char *nom, int *i){
   } */
 
 
-void evolution_sortie(Film *film, int from_year, int *i) {
+void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
     Annee_evol *annee = NULL;
-    int firs_year=0, delta=0, i3=0;
-    float moyenne=0, prevision=0;
+    int firs_year=0, delta=0, i3=0, cpt_moy=0;
+    float moyenne=0, prevision=0, moyenne_film=0;
 
     firs_year=film[0].annee;
     delta=2019-from_year;
-    printf("Calcul des prévision sur %d an(s)\n", delta);
+    printf("Calcul des prévision avec %d an(s) de données et sur %d an(s)\n", delta, for_year);
     annee=(Annee_evol*)malloc((sizeof(Annee_evol)*delta));
     annee[i3].x=1; // initialisation à 1 pour calcul de tendance première année
     while(delta>=0){
@@ -627,24 +627,31 @@ void evolution_sortie(Film *film, int from_year, int *i) {
             if (film[i2].annee==from_year){
                 (annee[i3].nb_film)++;
                 if (i3!=0){ // on ne fait pas le calcul si on à pas le REX de l'année précédente
-                    annee[i3].x=(((float)annee[i3-1].nb_film)/((float)annee[i3].nb_film));
-                    moyenne=((((float)annee[i3-1].x)+((float)annee[i3].x))/2);
+                    annee[i3].x=(((float)annee[i3].nb_film)/((float)annee[i3-1].nb_film));
+                    
                 }    
                 //printf("Année %d || film : %s\n", from_year, film[i2].titre);
             }
         }
         printf("Pour l'année %d : %d Films | Tendance : %f\n",from_year,annee[i3].nb_film,annee[i3].x);
+        moyenne=(moyenne+annee[i3].x);
+        moyenne_film=(moyenne_film+(float)annee[i3].nb_film);
+        cpt_moy++;
         
 
         from_year++;
         i3++;
         delta--;
     }    
-    prevision=(((float)annee[i3-1].nb_film)*moyenne);
+    moyenne=(moyenne/(float)cpt_moy);
+    moyenne_film=(moyenne_film/(float)cpt_moy);
+    prevision=(moyenne_film*moyenne);
     printf("X prévisionnel : %f\n", moyenne);
-    printf("Pour 2020 : %.2f films sortiront.\n", prevision);
-    prevision=(prevision*moyenne);
-    printf("Pour 2021 : %.2f films sortiront.\n", prevision);
+    for (int cpt=0 ; cpt<=for_year ; cpt++){
+        printf("Pour %d : %.2f films sortiront.\n", from_year, prevision);
+        prevision=(prevision*moyenne);   
+        from_year++;
+    }
 }
 
 

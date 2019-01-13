@@ -19,7 +19,7 @@ int main() {
   }else{
       printf("Ouverture OK !\n");
   }
-  int n=0, i=0, id=0, annee=0,choix;
+  int n=0, i=0, id=0, annee=0,choix,choix2;
   char nom[50];
   n = nb_ligne(f);
   Film *f_bdd=NULL, *new_film=NULL;
@@ -80,7 +80,11 @@ int main() {
                     break;
 
                     case 3: // évolution des sorties
-                        evolution_sortie(f_bdd, 2000, &i);
+                        printf("Saisisez l'année à partir de laquelle vous voulez calculer l'évolution :\n");
+                        scanf("%d", &choix);
+                        printf("Saisisez le nombre d'année à estimer :\n");
+                        scanf("%d", &choix2);
+                        evolution_sortie(f_bdd, choix, choix2, &i);
                     break;
 
                     case 4: // lister par genre
