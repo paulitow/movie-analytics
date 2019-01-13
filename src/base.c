@@ -614,6 +614,8 @@ int chercher_id_film(Film *film, char *nom, int *i){
 void evolution_sortie(Film *film, int from_year, int *i) {
     Annee_evol *annee = NULL;
     int firs_year=0, delta=0, i3=0;
+    float moyenne=0;
+
     firs_year=film[0].annee;
     delta=2019-from_year;
     printf("%d", delta);
@@ -626,6 +628,7 @@ void evolution_sortie(Film *film, int from_year, int *i) {
                 (annee[i3].nb_film)++;
                 if (i3!=0){ // on ne fait pas le calcul si on à pas le REX de l'année précédente
                     annee[i3].x=(((float)annee[i3-1].nb_film)/((float)annee[i3].nb_film));
+                    moyenne=((((float)annee[i3-1].x)+((float)annee[i3].x))/2);
                 }    
                 //printf("Année %d || film : %s\n", from_year, film[i2].titre);
             }
@@ -637,6 +640,7 @@ void evolution_sortie(Film *film, int from_year, int *i) {
         i3++;
         delta--;
     }    
+    printf("X prévisionnel : %f\n", moyenne);
 }
 
 
