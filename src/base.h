@@ -13,7 +13,8 @@ typedef struct {
 
 typedef struct {
   int year, nb_film, country;
-} Annee;
+  float x;
+} Annee_evol;
 
 void menu();
 void menu_stat();

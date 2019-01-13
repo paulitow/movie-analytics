@@ -612,22 +612,26 @@ int chercher_id_film(Film *film, char *nom, int *i){
 
 
 void evolution_sortie(Film *film, int from_year, int *i) {
-    Annee *annee = NULL;
+    Annee_evol *annee = NULL;
     int firs_year=0, delta=0, i3=0;
     firs_year=film[0].annee;
     delta=2019-from_year;
     printf("%d", delta);
-    annee=(Annee*)malloc((sizeof(Annee)*delta));
+    annee=(Annee_evol*)malloc((sizeof(Annee_evol)*delta));
+    annee[i3].x=1; // initialisation à 1 pour calcul de tendance première année
     while(delta>0){
         annee[i3].year=from_year;
         for (int i2=0; *i>i2; i2++) {
             if (film[i2].annee==from_year){
                 (annee[i3].nb_film)++;
+                if (i3!=0){ // on ne fait pas le calcul si on à pas le REX de l'année précédente
+                    annee[i3].x=(((float)annee[i3-1].nb_film)/((float)annee[i3].nb_film));
+                }    
                 //printf("Année %d || film : %s\n", from_year, film[i2].titre);
             }
         }
-        printf("Pour l'année %d : %d Films\n",from_year,annee[i3].nb_film);
-
+        printf("Pour l'année %d : %d Films Tendance : %f\n",from_year,annee[i3].nb_film,annee[i3].x);
+        
 
         from_year++;
         i3++;
