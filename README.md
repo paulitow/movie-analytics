@@ -1,6 +1,6 @@
 # Bienvenue sur le projet Movie-analytics !!
 
-Suivre le projet en détails : https://isen.paulitow.fr/redmine
+# Suivre le projet en détails : https://isen.paulitow.fr/redmine
 
 Usage : ./Movie-analytics
 
@@ -34,4 +34,3 @@ L'équipe Movie-analytics.
 Projet ISEN P16 Informatique
 Paul Moyse -- Damien Desmarets
 
-Ma root CA : https://paulitow.fr/dl/ca-Paulitow.cer
