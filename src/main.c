@@ -27,6 +27,10 @@ int main() {
   new_film = (Film*)malloc(sizeof(Film));
   do {
     menu(); // affichage simple du menu
+    if (i<1){
+        printf("\n--!! Attention !!--\n");
+        printf("La base n'est pas initialiser ! Vous devriez le faire en tapant 1.\n");
+    }
     scanf("%d", &choix);
     switch(choix){
         case 1: // initialisation de la base

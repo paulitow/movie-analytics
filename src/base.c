@@ -277,9 +277,9 @@ int chercher_id_film(Film *film, char *nom, int *i){
                 note=0;
                 printf("Entrez l'année recherchée :\n");
                 scanf("%d", &rep);
-                if (rep>2018){
-                    printf("!! Eh Oh on peut pas aller plus vite que la musique !\n!! Regardes deja ceux de 2018 non ?\n");
-                    rep=2018;
+                if (rep>2019){
+                    printf("!! Eh Oh on peut pas aller plus vite que la musique !\n!! Regardes deja ceux de 2019 non ?\n");
+                    rep=2019;
                 }
                 while(i2<=*i){
                     if (film[i2].annee==rep){
