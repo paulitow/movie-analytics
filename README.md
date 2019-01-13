@@ -1,6 +1,6 @@
 # Bienvenue sur le projet Movie-analytics !!
 
-# Suivre le projet en détails : https://isen.paulitow.fr/redmine
+# Suivre le projet en détails : https://isen.paulitow.fr/redmine/projects/movies-analytics
 
 Usage : ./Movie-analytics
 
