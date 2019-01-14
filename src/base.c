@@ -670,7 +670,7 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
     
 }
 
-void global_stat(Film *film, int *i){
+Pays_stat* global_stat(Film *film, int *i){
     Pays_stat *country = NULL;
     char nom_pays[200];
     country=malloc(sizeof(Pays_stat)*500); // je ne sais pas à quoi m'attendre, je prends large !
@@ -701,6 +701,7 @@ void global_stat(Film *film, int *i){
     printf("OK, j'ai un total de %d pays réalisateur de film\n", nb_pays);
     country=realloc(country, sizeof(Pays_stat)*nb_pays); // Maintenant que je sais le nombre de pays, j'adapte ma mémoire
     //free(country);
+    return country;
 }   
    
 

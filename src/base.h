@@ -36,7 +36,7 @@ void creer_film(Film *new_film, int *id);
 void supprimer_film(FILE *f , Film *del_film);
 void extract_base(Film *film, int *i);
 void evolution_sortie(Film *film, int from_year, int for_year, int *i);
-void global_stat(Film *film, int *i);
+Pays_stat* global_stat(Film *film, int *i);
 //void stat_pays(Film *film, char *buffer, int nombre_elements);
 //void stat_pays(Film *film, int nombre_elements);
 void bonus(); //???????????
