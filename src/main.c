@@ -13,7 +13,7 @@
 int main() {
 
   FILE* f = NULL;
-  f=fopen("BDD_v4.csv", "r+");
+  f=fopen("BDD_v2.csv", "r+");
   if(f==NULL){
       printf("Erreur d'ouverture de fichier !");
   }else{
@@ -23,7 +23,7 @@ int main() {
   char nom[50];
   n = nb_ligne(f);
   Film *f_bdd=NULL, *new_film=NULL;
-  f_bdd = (Film*)malloc(sizeof(Film)*n); // On Alloue la taille necessaire à l'init de la base
+  f_bdd = (Film*)malloc(sizeof(Film)*n+1); // On Alloue la taille necessaire à l'init de la base
   new_film = (Film*)malloc(sizeof(Film));
   do {
     menu(); // affichage simple du menu
@@ -62,6 +62,7 @@ int main() {
 
                     case 4:
                         extract_base(f_bdd, &i);
+                        //i=init_bdd(f, &n, f_bdd);
                     break;
                 }//switch menu base
             } else{
@@ -126,5 +127,6 @@ int main() {
     }
   }while(choix!=0);
   free(f_bdd); //C'est bon je te relache ! Va en paix mamen !
+  fclose(f);
   printf("L'équipe Movie Analytics vous souhaite de bonnes fêtes !\n\n");
 }

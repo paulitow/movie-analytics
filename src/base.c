@@ -569,7 +569,10 @@ int chercher_id_film(Film *film, char *nom, int *i){
             id++;
         }
         printf("%d films sauvegardés dans le fichier bdd_save.csv !\n", id);
-        fclose(f_save);
+        
+        id=0;
+        
+        
     }
 
     /* void stat_pays(Film *film, char *buffer, int nombre_elements) {
@@ -613,17 +616,16 @@ int chercher_id_film(Film *film, char *nom, int *i){
 
 void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
     Annee_evol *annee = NULL;
-    int firs_year=0, delta=0, i3=0, cpt_moy=0;
+    int delta=0, i3=0, cpt_moy=0;
     float moyenne=0, prevision=0, moyenne_film=0;
 
-    firs_year=film[0].annee;
-    delta=2019-from_year;
+    delta=2018-from_year;
     printf("Calcul des prévision avec %d an(s) de données et sur %d an(s)\n", delta, for_year);
     annee=(Annee_evol*)malloc((sizeof(Annee_evol)*delta));
     annee[i3].x=1; // initialisation à 1 pour calcul de tendance première année
     while(delta>=0){
         annee[i3].year=from_year;
-        for (int i2=0; *i>=i2; i2++) {
+        for (int i2=0; i2<=*i; i2++) {
             if (film[i2].annee==from_year){
                 (annee[i3].nb_film)++;
                 if (i3!=0){ // on ne fait pas le calcul si on à pas le REX de l'année précédente
@@ -652,6 +654,7 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
         prevision=(prevision*moyenne);   
         from_year++;
     }
+    i3=0;
 }
 
 
