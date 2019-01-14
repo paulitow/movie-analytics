@@ -25,7 +25,7 @@ int main() {
   Film *f_bdd=NULL, *new_film=NULL;
   f_bdd = (Film*)malloc(sizeof(Film)*n); // On Alloue la taille necessaire à l'init de la base
   new_film = (Film*)malloc(sizeof(Film));
-  Pays_stat *country = NULL;
+  
   do {
     menu(); // affichage simple du menu
     if (i<1){
@@ -78,7 +78,8 @@ int main() {
                 switch(choix){
                     case 1: //Pays le plus cinéphile (production de film)
                         printf("Calcul en cours...\n");
-                        country=global_stat(f_bdd, &i);
+                        global_stat(f_bdd, &i);
+                       
                         //stat_pays(f_bdd, "France", i);
                     break;
 
@@ -129,7 +130,6 @@ int main() {
     }
   }while(choix!=0);
   free(f_bdd); //C'est bon je te relache ! Va en paix mamen !
-  free(country);
   fclose(f);
   printf("L'équipe Movie Analytics vous souhaite de bonnes fêtes !\n\n");
 }

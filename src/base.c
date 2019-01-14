@@ -627,7 +627,7 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
 
     delta=2018-from_year;
     printf("Calcul des prévision avec %d an(s) de données et sur %d an(s)\n", delta, for_year);
-    annee=malloc((sizeof(Annee_evol)*delta+20));
+    annee=malloc((sizeof(Annee_evol)*delta*20));
     annee[i3].x=1; // initialisation à 1 pour calcul de tendance première année
     while(delta>=0){
         annee[i3].year=from_year;
@@ -670,10 +670,10 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
     
 }
 
-Pays_stat* global_stat(Film *film, int *i){
+void global_stat(Film *film, int *i){
     Pays_stat *country = NULL;
-    char nom_pays[200];
-    country=malloc(sizeof(Pays_stat)*500); // je ne sais pas à quoi m'attendre, je prends large !
+    char nom_pays[255];
+    country=malloc(sizeof(Pays_stat)*5000); // je ne sais pas à quoi m'attendre, je prends large !
     int nb_pays=1, occurence=0;
     strcpy(country[0].nom_pays, "France");
     country[0].id_pays=0;
@@ -699,9 +699,8 @@ Pays_stat* global_stat(Film *film, int *i){
     
     }
     printf("OK, j'ai un total de %d pays réalisateur de film\n", nb_pays);
-    country=realloc(country, sizeof(Pays_stat)*nb_pays); // Maintenant que je sais le nombre de pays, j'adapte ma mémoire
-    //free(country);
-    return country;
+    country=realloc(country, sizeof(Pays_stat)*nb_pays+1); // Maintenant que je sais le nombre de pays, j'adapte ma mémoire
+    free(country);
 }   
    
 
