@@ -627,7 +627,7 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
 
     delta=2018-from_year;
     printf("Calcul des prévision avec %d an(s) de données et sur %d an(s)\n", delta, for_year);
-    annee=(Annee_evol*)malloc((sizeof(Annee_evol)*delta));
+    annee=malloc((sizeof(Annee_evol)*delta+20));
     annee[i3].x=1; // initialisation à 1 pour calcul de tendance première année
     while(delta>=0){
         annee[i3].year=from_year;
@@ -661,22 +661,49 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
         from_year++;
     }
     i3=0;
+        
+    //free(annee);
+    prevision=0;
+    moyenne=0;
+    moyenne_film=0;
+    from_year=0;
+    
 }
 
 void global_stat(Film *film, int *i){
     Pays_stat *country = NULL;
-    country=(Pays_stat*)malloc(sizeof(Pays_stat)*10);
-    int i3=0;
-
-
-
-
-    for (int i2=0 ; i2<=*i ; i2++){
-        if(strcmp(film[i2].pays, country[i3].nom_pays)==0){
-
+    char nom_pays[200];
+    country=malloc(sizeof(Pays_stat)*500); // je ne sais pas à quoi m'attendre, je prends large !
+    int nb_pays=1, occurence=0;
+    strcpy(country[0].nom_pays, "France");
+    country[0].id_pays=0;
+    for (int i1=0 ; i1<*i ; i1++){ //Chaque film
+        strcpy(nom_pays, strtok(film[i1].pays,","));
+        
+        //printf("Pays : %s\n", nom_pays);
+        for (int i2=0 ; i2<nb_pays ; i2++){ //on vérifie qu'on l'a pas en base, sinon, on l'enregistre
+            if (strcmp(nom_pays, country[i2].nom_pays)==0){ //si correspondance, alors on ne fait rien
+                occurence=1;
+                //printf("---------------------------\n");
+            }
         }
+        if (occurence!=1){
+            printf("Nouveau pays : %s\n", nom_pays);
+            country[nb_pays+1].id_pays=nb_pays+1;
+            strcpy(country[nb_pays+1].nom_pays, nom_pays);
+            nb_pays++;
+        } else{
+            //printf("Je connais deja %s\n", nom_pays);
+            occurence=0;
+        }
+    
     }
-}
+    printf("OK, j'ai un total de %d pays réalisateur de film\n", nb_pays);
+    country=realloc(country, sizeof(Pays_stat)*nb_pays); // Maintenant que je sais le nombre de pays, j'adapte ma mémoire
+    //free(country);
+}   
+   
+
 
 
 void bonus(){

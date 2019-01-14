@@ -76,7 +76,8 @@ int main() {
                 scanf("%d", &choix);
                 switch(choix){
                     case 1: //Pays le plus cinéphile (production de film)
-                        printf("Calcule en cours...");
+                        printf("Calcul en cours...\n");
+                        global_stat(f_bdd, &i);
                         //stat_pays(f_bdd, "France", i);
                     break;
 

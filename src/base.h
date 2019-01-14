@@ -3,7 +3,7 @@
 
 typedef struct {
   int id, duree, nb_vote, note, annee;
-  char titre[100], genre[30], pays[15], real[60], acteurs[255];
+  char titre[100], genre[30], pays[200], real[100], acteurs[255];
 } Film;
 
 typedef struct {
@@ -12,7 +12,7 @@ typedef struct {
 } Pays;
 
 typedef struct {
-  char nom_pays[20];
+  char nom_pays[200];
   int id_pays, nb_film;
 } Pays_stat;
 
@@ -36,7 +36,7 @@ void creer_film(Film *new_film, int *id);
 void supprimer_film(FILE *f , Film *del_film);
 void extract_base(Film *film, int *i);
 void evolution_sortie(Film *film, int from_year, int for_year, int *i);
-
+void global_stat(Film *film, int *i);
 //void stat_pays(Film *film, char *buffer, int nombre_elements);
 //void stat_pays(Film *film, int nombre_elements);
 void bonus(); //???????????
