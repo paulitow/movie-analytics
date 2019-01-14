@@ -615,6 +615,12 @@ int chercher_id_film(Film *film, char *nom, int *i){
 
 
 void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
+    if (from_year==0){
+        from_year=2000;
+    }
+    if (for_year==0){
+        for_year=5;
+    }
     Annee_evol *annee = NULL;
     int delta=0, i3=0, cpt_moy=0;
     float moyenne=0, prevision=0, moyenne_film=0;
@@ -639,22 +645,37 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
         moyenne=(moyenne+annee[i3].x);
         moyenne_film=(moyenne_film+(float)annee[i3].nb_film);
         cpt_moy++;
-        
-
         from_year++;
         i3++;
         delta--;
-    }    
+    } // Fin while delta : 
+    //on a fini de faire la moulinette pour chaques années, place au prévision !  
+
     moyenne=(moyenne/(float)cpt_moy);
     moyenne_film=(moyenne_film/(float)cpt_moy);
     prevision=(moyenne_film*moyenne);
     printf("X prévisionnel : %f\n", moyenne);
-    for (int cpt=0 ; cpt<=for_year ; cpt++){
+    for (int cpt=0 ; cpt<for_year ; cpt++){
         printf("Pour %d : %.2f films sortiront.\n", from_year, prevision);
         prevision=(prevision*moyenne);   
         from_year++;
     }
     i3=0;
+}
+
+void global_stat(Film *film, int *i){
+    Pays_stat *country = NULL;
+    country=(Pays_stat*)malloc(sizeof(Pays_stat)*10);
+    int i3=0;
+
+
+
+
+    for (int i2=0 ; i2<=*i ; i2++){
+        if(strcmp(film[i2].pays, country[i3].nom_pays)==0){
+
+        }
+    }
 }
 
 

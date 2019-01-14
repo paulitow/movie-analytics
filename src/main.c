@@ -23,7 +23,7 @@ int main() {
   char nom[50];
   n = nb_ligne(f);
   Film *f_bdd=NULL, *new_film=NULL;
-  f_bdd = (Film*)malloc(sizeof(Film)*n+1); // On Alloue la taille necessaire à l'init de la base
+  f_bdd = (Film*)malloc(sizeof(Film)*n); // On Alloue la taille necessaire à l'init de la base
   new_film = (Film*)malloc(sizeof(Film));
   do {
     menu(); // affichage simple du menu
@@ -85,9 +85,9 @@ int main() {
                     break;
 
                     case 3: // évolution des sorties
-                        printf("Saisisez l'année à partir de laquelle vous voulez calculer l'évolution :\n");
+                        printf("Saisisez l'année à partir de laquelle vous voulez calculer l'évolution (0 = 2000) :\n");
                         scanf("%d", &choix);
-                        printf("Saisisez le nombre d'année à estimer :\n");
+                        printf("Saisisez le nombre d'année à estimer : (0 = 5)\n");
                         scanf("%d", &choix2);
                         evolution_sortie(f_bdd, choix, choix2, &i);
                     break;

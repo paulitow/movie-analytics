@@ -12,6 +12,11 @@ typedef struct {
 } Pays;
 
 typedef struct {
+  char nom_pays[20];
+  int id_pays, nb_film;
+} Pays_stat;
+
+typedef struct {
   int year, nb_film, country;
   float x;
 } Annee_evol;
