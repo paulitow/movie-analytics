@@ -643,7 +643,7 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
         }
         printf("Pour l'année %d : %d Films | Tendance : %f\n",from_year,annee[i3].nb_film,annee[i3].x);
         moyenne=(moyenne+annee[i3].x);
-        moyenne_film=(moyenne_film+(float)annee[i3].nb_film);
+        //moyenne_film=(moyenne_film+(float)annee[i3].nb_film);
         cpt_moy++;
         from_year++;
         i3++;
@@ -652,8 +652,8 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
     //on a fini de faire la moulinette pour chaques années, place au prévision !  
     //annee=realloc()
     moyenne=(moyenne/(float)cpt_moy);
-    moyenne_film=(moyenne_film/(float)cpt_moy);
-    prevision=(moyenne_film*moyenne);
+    //moyenne_film=moyenne_film/(float)cpt_moy);
+    prevision=(annee[i3-1].nb_film*moyenne); // on fait dans la continuité de la dernière année
     printf("X prévisionnel : %f\n", moyenne);
     for (int cpt=0 ; cpt<for_year ; cpt++){
         printf("Pour %d : %.2f films sortiront.\n", from_year, prevision);
