@@ -627,7 +627,7 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
 
     delta=2018-from_year;
     printf("Calcul des prévision avec %d an(s) de données et sur %d an(s)\n", delta, for_year);
-    annee=malloc((sizeof(Annee_evol)*delta*20));
+    annee=malloc(sizeof(Annee_evol)*delta*20);
     annee[i3].x=1; // initialisation à 1 pour calcul de tendance première année
     while(delta>=0){
         annee[i3].year=from_year;
@@ -650,7 +650,7 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
         delta--;
     } // Fin while delta : 
     //on a fini de faire la moulinette pour chaques années, place au prévision !  
-
+    //annee=realloc()
     moyenne=(moyenne/(float)cpt_moy);
     moyenne_film=(moyenne_film/(float)cpt_moy);
     prevision=(moyenne_film*moyenne);
@@ -661,7 +661,7 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
         from_year++;
     }
     i3=0;
-        
+    annee=realloc(annee, sizeof(Annee_evol)*cpt_moy+1);    
     //free(annee);
     prevision=0;
     moyenne=0;
