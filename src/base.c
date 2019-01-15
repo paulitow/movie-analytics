@@ -3,6 +3,9 @@
 #include <string.h>
 #include "base.h"
 #include "user.h"
+#define KRED "\x1B[31m"
+#define KGRN "\x1B[32m"
+#define KRESET "\033[0m"
 //#include "menu.c"
 
 void menu(){ // affichage simple du menu
@@ -545,12 +548,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
         scanf("%d", &(new_film)->nb_vote);
         new_id = *id+1;
         new_film->id=new_id;
-
-
-
     }
-
-
 
     void supprimer_film(FILE *f , Film *del_film){ //A commleter
         int id;
@@ -672,35 +670,41 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
 
 void global_stat(Film *film, int *i){
     Pays_stat *country = NULL;
-    char nom_pays[255];
+    int *pays_nok = NULL;
+    char nom_pays[255], first[50];
     country=malloc(sizeof(Pays_stat)*5000); // je ne sais pas à quoi m'attendre, je prends large !
-    int nb_pays=1, occurence=0;
-    strcpy(country[0].nom_pays, "France");
-    country[0].id_pays=0;
+    pays_nok=malloc(sizeof(int)*500); // Je m'attends à 500 pays NOK
+    int nb_pays=0, occurence=0, nb_pays_nok=0;
+
+
     for (int i1=0 ; i1<*i ; i1++){ //Chaque film
         strcpy(nom_pays, strtok(film[i1].pays,","));
-        
-        //printf("Pays : %s\n", nom_pays);
+  
         for (int i2=0 ; i2<nb_pays ; i2++){ //on vérifie qu'on l'a pas en base, sinon, on l'enregistre
             if (strcmp(nom_pays, country[i2].nom_pays)==0){ //si correspondance, alors on ne fait rien
-                occurence=1;
-                //printf("---------------------------\n");
+                occurence=1; // on l'a trouvé, il existe donc.
             }
         }
-        if (occurence!=1){
-            printf("Nouveau pays : %s\n", nom_pays);
-            country[nb_pays+1].id_pays=nb_pays+1;
-            strcpy(country[nb_pays+1].nom_pays, nom_pays);
-            nb_pays++;
+
+        if (occurence!=1){ // si on ne l'a pas, on l'ajoute
+            if (strlen(nom_pays)<=3){ // Mais on vérifie que ca n'est pas un nom degeu
+                printf(KRED " X "KRESET"| Je n'aime pas ce pays : %s\n", nom_pays);
+            } else { //OK, là le pays est valable
+                printf(KGRN" V "KRESET"| Nouveau pays : %s\n", nom_pays);
+                country[nb_pays].id_pays=nb_pays+1;
+                strcpy(country[nb_pays].nom_pays, nom_pays);
+                nb_pays++;
+                }
         } else{
-            //printf("Je connais deja %s\n", nom_pays);
             occurence=0;
         }
     
-    }
+    } // fin di traitement de chaques film
     printf("OK, j'ai un total de %d pays réalisateur de film\n", nb_pays);
-    country=realloc(country, sizeof(Pays_stat)*nb_pays+1); // Maintenant que je sais le nombre de pays, j'adapte ma mémoire
-    free(country);
+    country=realloc(country, sizeof(Pays_stat)*nb_pays); // Maintenant que je sais le nombre de pays, j'adapte ma mémoire
+    printf("Premier pays : %s ID : %d\n", country[0].nom_pays, country[0].id_pays);
+    free(country); // on a fini le traitement, on libère la mémoire !
+
 }   
    
 
