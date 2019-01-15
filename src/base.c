@@ -625,7 +625,7 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
 
     delta=2018-from_year;
     printf("Calcul des prévision avec %d an(s) de données et sur %d an(s)\n", delta, for_year);
-    annee=malloc(sizeof(Annee_evol)*delta*20);
+    annee=malloc(sizeof(Annee_evol)*delta*10);
     annee[i3].x=1; // initialisation à 1 pour calcul de tendance première année
     while(delta>=0){
         annee[i3].year=from_year;
@@ -669,12 +669,11 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
 }
 
 void global_stat(Film *film, int *i){
-    Pays_stat *country = NULL;
+    Pays_stat *country = NULL, *stat_country = NULL;
     int *pays_nok = NULL;
     char nom_pays[255], first[50];
     country=malloc(sizeof(Pays_stat)*5000); // je ne sais pas à quoi m'attendre, je prends large !
-    pays_nok=malloc(sizeof(int)*500); // Je m'attends à 500 pays NOK
-    int nb_pays=0, occurence=0, nb_pays_nok=0;
+    int nb_pays=0, occurence=0, nb_pays_stat=0;
 
 
     for (int i1=0 ; i1<*i ; i1++){ //Chaque film
@@ -683,6 +682,7 @@ void global_stat(Film *film, int *i){
         for (int i2=0 ; i2<nb_pays ; i2++){ //on vérifie qu'on l'a pas en base, sinon, on l'enregistre
             if (strcmp(nom_pays, country[i2].nom_pays)==0){ //si correspondance, alors on ne fait rien
                 occurence=1; // on l'a trouvé, il existe donc.
+                country[i2].nb_film++;
             }
         }
 
@@ -693,6 +693,7 @@ void global_stat(Film *film, int *i){
                 printf(KGRN" V "KRESET"| Nouveau pays : %s\n", nom_pays);
                 country[nb_pays].id_pays=nb_pays+1;
                 strcpy(country[nb_pays].nom_pays, nom_pays);
+                country[nb_pays].nb_film=1;
                 nb_pays++;
                 }
         } else{
@@ -700,10 +701,28 @@ void global_stat(Film *film, int *i){
         }
     
     } // fin di traitement de chaques film
+
+
     printf("OK, j'ai un total de %d pays réalisateur de film\n", nb_pays);
     country=realloc(country, sizeof(Pays_stat)*nb_pays); // Maintenant que je sais le nombre de pays, j'adapte ma mémoire
+    stat_country=malloc(sizeof(Pays_stat)*nb_pays); // et j'alloue (largement) le tableau final
     printf("Premier pays : %s ID : %d\n", country[0].nom_pays, country[0].id_pays);
+    for (int i2=0 ; i2<nb_pays ; i2++){
+        if (country[i2].nb_film>500){
+            stat_country[nb_pays_stat].id_pays=country[i2].id_pays;
+            stat_country[nb_pays_stat].nb_film=country[i2].nb_film;
+            strcpy(stat_country[nb_pays_stat].nom_pays, country[i2].nom_pays);
+            nb_pays_stat++;
+        }
+    }
     free(country); // on a fini le traitement, on libère la mémoire !
+    stat_country=realloc(stat_country, sizeof(Pays_stat)*nb_pays_stat);//et on réalloue proprement notre tableau final
+    //On passe au traitement d'affichage
+    for (int i2=0 ; i2<nb_pays_stat ; i2++){
+        printf("Pays : %s nb film : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
+    }
+
+
 
 }   
    
