@@ -1,14 +1,14 @@
-Movie-analytics: main.o base.o user.o
-	gcc -Wall main.o base.o user.o -o ../Movie-analytics
+Movie-analytics: main.o base.o stat.o
+	gcc -Wall main.o base.o stat.o -o ../Movie-analytics
 
 main.o:
-		gcc -c main.c
+		gcc -Wall -c main.c
 
 base.o:
-	gcc -c base.c
+	gcc -Wall -c base.c
 
-user.o:
-	gcc -c user.c
+stat.o:
+	gcc -Wall -c stat.c
 
 clean:
 	rm *.o ../Movie-analytics

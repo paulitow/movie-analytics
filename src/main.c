@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "base.h"
-#include "user.h"
+#include "stat.h"
+
 /*#########################V1.0.1####################
     Auteurs : Paul Moyse - Damien Desmarets
 
@@ -19,13 +20,13 @@ int main() {
   }else{
       printf("Ouverture OK !\n");
   }
-  int n=0, i=0, id=0, annee=0,choix,choix2;
+  int n=0, i=0,choix,choix2;
   char nom[50];
   n = nb_ligne(f);
   Film *f_bdd=NULL, *new_film=NULL;
   f_bdd = (Film*)malloc(sizeof(Film)*n); // On Alloue la taille necessaire à l'init de la base
   new_film = (Film*)malloc(sizeof(Film));
-  
+  splash();
   do {
     menu(); // affichage simple du menu
     if (i<1){
@@ -55,19 +56,14 @@ int main() {
                     break;
 
                     case 3:
-                        printf("Entrez le nom du film à chercher : \n");
-                        scanf("%s", nom);
-                        id=chercher_id_film(f_bdd, nom, &i);
-                        printf("%d", id);
+                        extract_base(f_bdd, &i);
                     break;
 
-                    case 4:
-                        extract_base(f_bdd, &i);
-                        //i=init_bdd(f, &n, f_bdd);
+                    default:
                     break;
                 }//switch menu base
             } else{
-                printf("Erreur : la base n'est pas initialisée !\n");
+                printf(KRED"Erreur "KRESET": la base n'est pas initialisée !\n");
             }    //if base init
         break; //break case menu base
 
@@ -77,10 +73,7 @@ int main() {
                 scanf("%d", &choix);
                 switch(choix){
                     case 1: //Pays le plus cinéphile (production de film)
-                        printf("Calcul en cours...\n");
                         global_stat(f_bdd, &i);
-                       
-                        //stat_pays(f_bdd, "France", i);
                     break;
 
                     case 2: //Genre le mieux noté
@@ -88,9 +81,9 @@ int main() {
                     break;
 
                     case 3: // évolution des sorties
-                        printf("Saisisez l'année à partir de laquelle vous voulez calculer l'évolution (0 = 2000) :\n");
+                        printf("Saisisez l'année à partir de laquelle vous voulez calculer l'évolution (1 = 2000) :\n");
                         scanf("%d", &choix);
-                        printf("Saisisez le nombre d'année à estimer : (0 = 5)\n");
+                        printf("Saisisez le nombre d'année à estimer : (1 = 5)\n");
                         scanf("%d", &choix2);
                         evolution_sortie(f_bdd, choix, choix2, &i);
                     break;
@@ -109,21 +102,10 @@ int main() {
                 }//switch menu base
 
             }else{
-                printf("Erreur : la base n'est pas initialisée !\n");
+                printf(KRED"Erreur "KRESET": la base n'est pas initialisée !\n");
             }
         break; // break menu stat
 
-        case 4: //Panel user
-            if (i!=0){
-                printf("Non disponible dans cette version\n");
-            }else{
-                printf("Erreur : la base n'est pas initialisée !\n");
-            }
-        break;
-
-        case 5:
-            bonus();
-        break;
 
         default:
         break;

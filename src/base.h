@@ -1,6 +1,8 @@
 #ifndef BASE_H
 #define BASE_H
-
+#define KRED "\x1B[31m"
+#define KGRN "\x1B[32m"
+#define KRESET "\033[0m"
 typedef struct {
   int id, duree, nb_vote, note, annee;
   char titre[200], genre[50], pays[200], real[100], acteurs[255];
@@ -26,6 +28,7 @@ void menu_stat();
 void menu_base();
 void ls_genre();
 void ls_pays();
+void splash();
 int init_bdd(FILE * f, int *n, Film *film);
 int nb_ligne(FILE *f);
 void chercher_film(Film *film, char *nom, int *i);
