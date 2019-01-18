@@ -13,15 +13,7 @@ typedef struct {
   int nombre_films;
 } Pays;
 
-typedef struct {
-  char nom_pays[200];
-  int id_pays, nb_film;
-} Pays_stat;
 
-typedef struct {
-  int year, nb_film, country;
-  float x;
-} Annee_evol;
 
 void menu();
 void menu_stat();
@@ -33,13 +25,11 @@ int init_bdd(FILE * f, int *n, Film *film);
 int nb_ligne(FILE *f);
 void chercher_film(Film *film, char *nom, int *i);
 int chercher_id_film(Film *film, char *nom, int *i);
-void lister_film(Film *film, int arg, int *i);
 void ajouter_film(FILE *f, Film *film, Film *new_film, int *i);
 void creer_film(Film *new_film, int *id);
 void supprimer_film(FILE *f , Film *del_film);
 void extract_base(Film *film, int *i);
-void evolution_sortie(Film *film, int from_year, int for_year, int *i);
-void global_stat(Film *film, int *i);
+
 //void stat_pays(Film *film, char *buffer, int nombre_elements);
 //void stat_pays(Film *film, int nombre_elements);
 void bonus(); //???????????

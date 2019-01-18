@@ -5,6 +5,18 @@ typedef struct {
     int id, film_vu[50];
     char pseudo[30], genre_aime[30];
 }User;
+typedef struct {
+  char nom_pays[200];
+  int id_pays, nb_film;
+} Pays_stat;
 
-void create_user(FILE *f_user, char *pseudo, int *con);
+typedef struct {
+  int year, nb_film, country;
+  float x;
+} Annee_evol;
+
+void lister_film(Film *film, int arg, int *i);
+void evolution_sortie(Film *film, int from_year, int for_year, int *i);
+void global_stat(Film *film, int *i);
+
 #endif

@@ -266,7 +266,7 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
 void global_stat(Film *film, int *i){
     Pays_stat *country = NULL, *stat_country = NULL;
     char nom_pays[255];
-    country=malloc(sizeof(Pays_stat)*5000); // je ne sais pas à quoi m'attendre, je prends large !
+    country=(Pays_stat*)malloc(sizeof(Pays_stat)*5000); // je ne sais pas à quoi m'attendre, je prends large !
     int nb_pays=0, occurence=0, nb_pays_stat=0;
 
 

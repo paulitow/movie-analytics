@@ -4,7 +4,7 @@
 #include "base.h"
 #include "stat.h"
 
-
+//#include "menu.c"
 
 void menu(){ // affichage simple du menu
     printf("------MENU------\n");
