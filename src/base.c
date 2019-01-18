@@ -625,7 +625,7 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
 
     delta=2018-from_year;
     printf("Calcul des prévision avec %d an(s) de données et sur %d an(s)\n", delta, for_year);
-    annee=malloc(sizeof(Annee_evol)*delta*10);
+    annee=calloc(sizeof(Annee_evol), delta+1);
     annee[i3].x=1; // initialisation à 1 pour calcul de tendance première année
     while(delta>=0){
         annee[i3].year=from_year;
@@ -648,7 +648,7 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
         delta--;
     } // Fin while delta : 
     //on a fini de faire la moulinette pour chaques années, place au prévision !  
-    //annee=realloc()
+    
     moyenne=(moyenne/(float)cpt_moy);
     //moyenne_film=moyenne_film/(float)cpt_moy);
     prevision=(annee[i3-1].nb_film*moyenne); // on fait dans la continuité de la dernière année
@@ -659,8 +659,8 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
         from_year++;
     }
     i3=0;
-    annee=realloc(annee, sizeof(Annee_evol)*cpt_moy+1);    
-    //free(annee);
+    //annee=realloc(annee, sizeof(Annee_evol)*cpt_moy+1);    
+    free(annee);
     prevision=0;
     moyenne=0;
     moyenne_film=0;
@@ -721,7 +721,7 @@ void global_stat(Film *film, int *i){
     for (int i2=0 ; i2<nb_pays_stat ; i2++){
         printf("Pays : %s nb film : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
     }
-
+    free(stat_country);
 
 
 }   
