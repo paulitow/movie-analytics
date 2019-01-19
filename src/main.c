@@ -20,7 +20,7 @@ int main() {
   }else{
       printf("Ouverture OK !\n");
   }
-  int n=0, i=0,choix,choix2;
+  int n=0, i=0,choix,choix2, id=0;
   char nom[50];
   n = nb_ligne(f);
   Film *f_bdd=NULL, *new_film=NULL;
@@ -36,7 +36,7 @@ int main() {
     scanf("%d", &choix);
     switch(choix){
         case 1: // initialisation de la base
-            i=init_bdd(f, &n, f_bdd); //  i=nb element dans base
+            i=init_bdd(f, &n, f_bdd, &id); //  i=nb element dans base
         break;
 
         case 2: // Administration de la DB
@@ -51,7 +51,8 @@ int main() {
                     break;
 
                     case 2: //ajouter film
-                        creer_film(new_film, &i);
+                        f_bdd = (Film*)realloc(f_bdd, sizeof(Film)*i+1);
+                        creer_film(new_film, &id, &i);
                         ajouter_film(f, f_bdd, new_film, &i);
                     break;
 

@@ -21,12 +21,12 @@ void menu_base();
 void ls_genre();
 void ls_pays();
 void splash();
-int init_bdd(FILE * f, int *n, Film *film);
+int init_bdd(FILE * f, int *n, Film *film, int *id);
 int nb_ligne(FILE *f);
 void chercher_film(Film *film, char *nom, int *i);
 int chercher_id_film(Film *film, char *nom, int *i);
 void ajouter_film(FILE *f, Film *film, Film *new_film, int *i);
-void creer_film(Film *new_film, int *id);
+void creer_film(Film *new_film, int *id2, int *id);
 void supprimer_film(FILE *f , Film *del_film);
 void extract_base(Film *film, int *i);
 

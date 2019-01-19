@@ -82,7 +82,7 @@ void menu_base(){
                                                 
     }
 
-    int init_bdd(FILE * f, int *n, Film *film){ // retrourne le nombre d'éléments en base et init
+    int init_bdd(FILE * f, int *n, Film *film, int *id){ // retrourne le nombre d'éléments en base et init
     // filmtv_ID;film_title;year;genre;duration;country;director;actors;avg_vote;votes;
     char l[2555];
     int i=0;
@@ -92,6 +92,7 @@ void menu_base(){
 
         (film+i)->id = atoi(strtok(l,";")); // ID
         printf("ID : %d\n", film[i].id);
+        *id=film[i].id;
 
         //printf("%s",strtok(NULL,";"));
         strcpy((film+i)->titre,strtok(NULL,";"));// Titre
@@ -209,7 +210,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
         fseek(f,0,SEEK_END);
         printf("\n-------------Resumé-----------\n");
         printf("ID : %d\n", new_film->id);
-        id=new_film->id;
+        id=*i;
         printf("Titre : %s\n", new_film->titre);
         printf("Année : %d\n", new_film->annee);
         printf("Genre : %s\n", new_film->genre);
@@ -256,7 +257,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
         }
     }
 
-    void creer_film(Film *new_film, int *id){
+    void creer_film(Film *new_film, int *id2, int *id){
         int choix, new_id=0;
         char genre[30];
         printf("-----création de film------\n");
@@ -364,7 +365,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
         scanf("%d", &(new_film)->note);
         printf("\nNombre de vote : ");
         scanf("%d", &(new_film)->nb_vote);
-        new_id = *id+1;
+        new_id = *id2+1;
         new_film->id=new_id;
     }
 
