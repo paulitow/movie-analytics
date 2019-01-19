@@ -18,5 +18,6 @@ typedef struct {
 void lister_film(Film *film, int arg, int *i);
 void evolution_sortie(Film *film, int from_year, int for_year, int *i);
 void global_stat(Film *film, int *i);
+void trier_tb_c(Pays_stat *stat_country, int nb_pays);
 
 #endif

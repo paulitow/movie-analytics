@@ -68,7 +68,7 @@ void menu_base(){
     }
 
     void splash(){
-    printf(" /XX      /XX                      /XX\n"); 
+    printf(KCYN" /XX      /XX                      /XX\n"); 
     printf("| XXX    /XXX\n"); 
     printf("| XXXX  /XXXX  /XXXXXX  /XX    /XX /XX  /XXXXXX\n"); 
     printf("| XX XX/XX XX /XX__  XX|  XX  /XX/| XX /XX__  XX\n"); 
@@ -78,7 +78,7 @@ void menu_base(){
     printf("|__/     |__/ |______/      _/    |__/      ___/\n"); 
     printf("---------------------Analytics------------------\n");
     printf("-----------------------V2.0---------------------\n");
-    printf("\n");
+    printf("\n"KRESET);
                                                 
     }
 

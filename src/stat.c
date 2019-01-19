@@ -320,7 +320,42 @@ void global_stat(Film *film, int *i){
     for (int i2=0 ; i2<nb_pays_stat ; i2++){
         printf("Pays : %s nb film : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
     }
+    printf("-----------------------\n");
+    trier_tb_c(stat_country, nb_pays_stat);
+    for (int i2=0 ; i2<nb_pays_stat ; i2++){
+        printf("Pays : %s nb film : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
+    }
     free(stat_country);
 
 
 }   
+void trier_tb_c(Pays_stat *stat_country, int nb_pays){
+    //Pays_stat *tmp = NULL;
+    //tmp=calloc(sizeof(Pays_stat),1);
+    Pays_stat tmp;
+    int j,i,k;
+
+    for(i=1 ; i<nb_pays ; i++){
+        if (stat_country[i-1].nb_film<stat_country[i].nb_film){
+            printf(KGRN"j=0\n"KRESET);
+            j=0;
+            while(stat_country[j].nb_film<stat_country[i].nb_film){
+                printf(KGRN"j++\n"KRESET);
+                j++;
+            }
+            tmp=stat_country[i];
+            for (k=i-1 ; k<=j ; k++){
+                stat_country[j]=tmp;
+                printf(KGRN"CHANGEMENT\n"KRESET);
+            }
+        }
+
+    }
+    printf("=============\n");
+    for (int i2=0 ; i2<nb_pays ; i2++){
+        printf("Pays : %s nb film : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
+    }
+    printf("=============\n");
+
+
+}
