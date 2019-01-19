@@ -92,7 +92,7 @@ void menu_base(){
 
         (film+i)->id = atoi(strtok(l,";")); // ID
         printf("ID : %d\n", film[i].id);
-        *id=film[i].id;
+        *id=film[i].id;//préparation à l'ajout d'un nouveau 
 
         //printf("%s",strtok(NULL,";"));
         strcpy((film+i)->titre,strtok(NULL,";"));// Titre

@@ -30,8 +30,6 @@ void creer_film(Film *new_film, int *id2, int *id);
 void supprimer_film(FILE *f , Film *del_film);
 void extract_base(Film *film, int *i);
 
-//void stat_pays(Film *film, char *buffer, int nombre_elements);
-//void stat_pays(Film *film, int nombre_elements);
 void bonus(); //???????????
 
 #endif // ne rien mettre après !

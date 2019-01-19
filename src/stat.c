@@ -217,7 +217,7 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
     }
     Annee_evol *annee = NULL;
     int delta=0, i3=0, cpt_moy=0;
-    float moyenne=0, prevision=0;
+    float moyenne=0, prevision=0, moyenne_film=0;
 
     delta=2018-from_year;
     printf("Calcul des prévision avec %d an(s) de données et sur %d an(s)\n", delta, for_year);
@@ -242,6 +242,7 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
             printf(KGRN"  A\n"KRESET);
         }
         moyenne=(moyenne+annee[i3].x);
+        moyenne_film=moyenne_film+annee[i3].nb_film;
         cpt_moy++;
         from_year++;
         i3++;
@@ -250,8 +251,12 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
     //on a fini de faire la moulinette pour chaques années, place au prévision !  
     
     moyenne=(moyenne/(float)cpt_moy);
+    moyenne_film=moyenne_film/cpt_moy;
     prevision=(annee[i3-1].nb_film*moyenne); // on fait dans la continuité de la dernière année
+    printf("--------------------------------\n");
     printf("X prévisionnel : %f\n", moyenne);
+    printf("Moyenne des films sur la plage de calcul : %.2f\n", moyenne_film);
+    printf("--------------------------------\n");
     for (int cpt=0 ; cpt<for_year ; cpt++){
         printf("Pour %d : %.2f films sortiront.\n", from_year, prevision);
         prevision=(prevision*moyenne);   
