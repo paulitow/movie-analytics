@@ -207,7 +207,7 @@
 
 void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
     if (from_year==1){
-        from_year=2000;
+        from_year=1911;
     } else if(from_year<1911){
         from_year=1911;
         printf("1911 est la première année où il y a eu des films de réaliser.\n");
@@ -238,6 +238,8 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
         printf("Pour l'année %d : %d Films | Tendance : %f",from_year,annee[i3].nb_film,annee[i3].x);
         if (annee[i3].x<1){
             printf(KRED"  V\n"KRESET);
+        } else if(annee[i3].x==1){
+            printf(KYEL"  O\n"KRESET);
         } else{
             printf(KGRN"  A\n"KRESET);
         }
@@ -305,7 +307,6 @@ void global_stat(Film *film, int *i){
     printf("Total de pays réalisateur de films : %d\n", nb_pays);
     country=realloc(country, sizeof(Pays_stat)*nb_pays); // Maintenant que je sais le nombre de pays, j'adapte ma mémoire
     stat_country=malloc(sizeof(Pays_stat)*nb_pays); // et j'alloue (largement) le tableau final
-    printf("Premier pays : %s ID : %d\n", country[0].nom_pays, country[0].id_pays);
     for (int i2=0 ; i2<nb_pays ; i2++){
         if (country[i2].nb_film>500){
             stat_country[nb_pays_stat].id_pays=country[i2].id_pays;
@@ -317,45 +318,48 @@ void global_stat(Film *film, int *i){
     free(country); // on a fini le traitement, on libère la mémoire !
     stat_country=realloc(stat_country, sizeof(Pays_stat)*nb_pays_stat);//et on réalloue proprement notre tableau final
     //On passe au traitement d'affichage
+
+    trier_tb_c(stat_country, nb_pays_stat); //On trie le tableau par ordre croissant
+    printf("=============PODIUM=============\n");
+    printf("\n");
     for (int i2=0 ; i2<nb_pays_stat ; i2++){
-        printf("Pays : %s nb film : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
+        switch(i2){
+            case 0:
+                printf(KGRN"1er Pays : %s nb film : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
+            break;
+            case 1:
+                printf(KYEL"2er Pays : %s nb film : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
+            break;
+            case 2:
+                printf(KCYN"3em Pays : %s nb film : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
+                printf(KRESET"\n");
+            break;
+            default:
+                printf("    Pays : %s nb film : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
+            break;
+        }
+       
     }
-    printf("-----------------------\n");
-    trier_tb_c(stat_country, nb_pays_stat);
-    for (int i2=0 ; i2<nb_pays_stat ; i2++){
-        printf("Pays : %s nb film : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
-    }
+    printf("\n");
+    printf("=============PODIUM=============\n");
     free(stat_country);
 
 
 }   
+//Methode du tri par selection
 void trier_tb_c(Pays_stat *stat_country, int nb_pays){
-    //Pays_stat *tmp = NULL;
-    //tmp=calloc(sizeof(Pays_stat),1);
-    Pays_stat tmp;
-    int j,i,k;
-
-    for(i=1 ; i<nb_pays ; i++){
-        if (stat_country[i-1].nb_film<stat_country[i].nb_film){
-            printf(KGRN"j=0\n"KRESET);
-            j=0;
-            while(stat_country[j].nb_film<stat_country[i].nb_film){
-                printf(KGRN"j++\n"KRESET);
-                j++;
-            }
-            tmp=stat_country[i];
-            for (k=i-1 ; k<=j ; k++){
-                stat_country[j]=tmp;
-                printf(KGRN"CHANGEMENT\n"KRESET);
+    Pays_stat *tmp = NULL;
+    tmp=(Pays_stat*)malloc(sizeof(Pays_stat));
+    //Pays_stat tmp;
+    int j,i;
+    for(i=0 ; i<nb_pays-1 ; i++){
+        for(j=i+1 ; j<nb_pays ; j++){
+            if(stat_country[i].nb_film<stat_country[j].nb_film){
+                *tmp=stat_country[i];
+                stat_country[i]=stat_country[j];
+                stat_country[j]=*tmp;
             }
         }
-
     }
-    printf("=============\n");
-    for (int i2=0 ; i2<nb_pays ; i2++){
-        printf("Pays : %s nb film : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
-    }
-    printf("=============\n");
-
-
+    free(tmp);
 }

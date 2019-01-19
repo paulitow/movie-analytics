@@ -82,7 +82,7 @@ int main() {
                     break;
 
                     case 3: // évolution des sorties
-                        printf("Saisisez l'année à partir de laquelle vous voulez calculer l'évolution (1 = 2000) :\n");
+                        printf("Saisisez l'année à partir de laquelle vous voulez calculer l'évolution (1 = 1911) :\n");
                         scanf("%d", &choix);
                         printf("Saisisez le nombre d'année à estimer : (1 = 5)\n");
                         scanf("%d", &choix2);

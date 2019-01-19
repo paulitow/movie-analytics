@@ -18,7 +18,7 @@ void menu(){ // affichage simple du menu
 
 void menu_stat(){
     printf("------STATISTIQUES------\n");
-    printf("------Avancée\n");
+    printf("------Avancées\n");
     printf("1 : Afficher les pays les plus cinéphile\n");
     printf("2 : Afficher les genres les plus réalisés\n");
     printf("3 : Prédire l'évolution des sorties\n");
