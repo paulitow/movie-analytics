@@ -7,40 +7,40 @@
 //#include "menu.c"
 
 void menu(){ // affichage simple du menu
-    printf("------MENU------\n");
+    printf("\n------MENU------\n");
     printf("1 : Initialiser la BDD\n");
     printf("2 : Administration de la base\n");
-    printf("3 : Statistique\n");
-    printf("0 : Quitter...\n");
+    printf("3 : Statistiques\n");
+    printf("0 : Quitter...\n\n");
     printf("Votre choix ?\n");
 
 }
 
 void menu_stat(){
-    printf("------STATISTIQUES------\n");
+    printf("\n------STATISTIQUES------\n");
     printf("------Avancées\n");
-    printf("1 : Afficher les pays les plus cinéphile\n");
+    printf("1 : Afficher les pays les plus producteurs\n");
     printf("2 : Afficher les genres les plus réalisés\n");
     printf("3 : Prédire l'évolution des sorties\n");
     printf("------Basiques\n");
-    printf("4 : Lister les films par genre\n");
-    printf("5 : Lister les films par année\n");
-    printf("6 : Lister les films par pays\n");
-    printf("0 : Quitter...\n");
+    printf("4 : Compter les films par genre\n");
+    printf("5 : Compter les films par année\n");
+    printf("6 : Compter les films par pays\n");
+    printf("0 : Quitter...\n\n");
     printf("Votre choix ?\n");
 }
 
 void menu_base(){
-    printf("------DATABASE------\n");
+    printf("\n------DATABASE------\n");
     printf("1 : Rechercher un film\n");
     printf("2 : Ajouter un film\n");
     printf("3 : Sauvegarder la base dans un fichier CSV\n");
-    printf("0 : Quitter...\n");
+    printf("0 : Quitter...\n\n");
     printf("Votre choix ?\n");
 }
 
     void ls_genre(){
-        printf("Choix des genres :\n");
+        printf("\nChoix des genres :\n");
         printf("0 : Comédie\n");
         printf("1 : Drame\n");
         printf("2 : Thriller\n");
@@ -50,11 +50,11 @@ void menu_base(){
         printf("6 : Horreur\n");
         printf("7 : Mythologie\n");
         printf("8 : Biographie\n");
-        printf("9 : Musicale\n");
+        printf("9 : Musicale\n\n");
     }
 
     void ls_pays(){
-        printf("Choix des pays :\n");
+        printf("\nChoix des pays :\n");
         printf("0 : France\n");
         printf("1 : Italie\n");
         printf("2 : USA\n");
@@ -64,7 +64,7 @@ void menu_base(){
         printf("6 : Mexique\n");
         printf("7 : Russie\n");
         printf("8 : Suède\n");
-        printf("9 : Canada\n");
+        printf("9 : Canada\n\n");
     }
 
     void splash(){
@@ -82,7 +82,7 @@ void menu_base(){
 
     }
 
-    int init_bdd(FILE * f, int *n, Film *film, int *id){ // retrourne le nombre d'éléments en base et init
+    int init_bdd(FILE * f, int *n, Film *film, int *id){ // retourne le nombre d'éléments en base et init
     // filmtv_ID;film_title;year;genre;duration;country;director;actors;avg_vote;votes;
     char l[2555];
     int i=0;
@@ -92,7 +92,7 @@ void menu_base(){
 
         (film+i)->id = atoi(strtok(l,";")); // ID
         printf("ID : %d\n", film[i].id);
-        *id=film[i].id;//préparation à l'ajout d'un nouveau
+        *id=film[i].id;//préparation à l'ajout d'un nouveau film
 
         //printf("%s",strtok(NULL,";"));
         strcpy((film+i)->titre,strtok(NULL,";"));// Titre
@@ -121,20 +121,20 @@ void menu_base(){
         printf("Note moyenne : %d\n", film[i].note);
 
         (film+i)->nb_vote = atoi(strtok(NULL,";")); // nombre de vote
-        printf("Nombre de vote : %d\n", film[i].nb_vote);
+        printf("Nombre de vote : %d\n\n", film[i].nb_vote);
 
 
         printf("----------\n");
         i++; // compteur tb de structure
     }
-    printf("NB ligne fichier : %d\n", *n);
-    printf("NB ligne strucutre : %d\n", i);
+    printf("Nombre de lignes du fichier : %d\n", *n);
+    printf("Nombre de lignes de la structure : %d\n", i);
     if (i!=*n){
-        printf("Erreur : Delta entre fichier et structure !!\n");
+        printf("Erreur : Delta entre fichier et structure !\n\n");
     }else{
-        printf("Info : Base cohérente avec fichier\n");
+        printf("Info : Base cohérente avec fichier\n\n");
     }
-    printf("--Fin d'importation--\n");
+    printf("--Fin d'importation--\n\n");
     return i;
 }
 
@@ -165,7 +165,7 @@ void chercher_film(Film *film, char *nom, int *i){
         }
         i2++;
     }
-    printf("Il y a %d correspondance(s)\n", nb_c);
+    printf("Il y a %d correspondance(s)\n\n", nb_c);
 
 }
 
@@ -179,7 +179,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
             printf("Titre : %s\n", film[i2].titre);
             printf("Annee : %d\n", film[i2].annee);
             printf("Genre : %s\n", film[i2].genre);
-            printf("----------\n");
+            printf("----------\n\n");
             id=film[i2].id;
             nb_c++;
 
@@ -189,7 +189,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
     printf("Il y a %d correspondance(s)\n", nb_c);
     if (nb_c!=0){//il y à au moins 1 correspondance
         if (nb_c>1){//2 ou plus de correspondance
-            printf("Il y à plusieurs correspondance, veuilez choisir l'ID :\n");
+            printf("Il y à plusieurs correspondances, veuilez choisir l'ID :\n");
             scanf("%d", &id);
             return id;
         }else{ // qu'une seule corespondance
@@ -197,7 +197,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
         }
     }else{ //Pas de correspondance
         id=-1;//on indique une recherche nulle
-        printf("Pas de film nommé %s", nom);
+        printf("Aucun film nommé %s dans la base.\n\n", nom);
         return id;
     }
 
@@ -225,7 +225,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
         scanf("%d",&choix);
         switch(choix){
             case 0:
-                printf("Abord mission !\n");
+                printf("Mission Abord !\n\n");
                 free(new_film);
             break;
             case 1:
@@ -242,16 +242,16 @@ int chercher_id_film(Film *film, char *nom, int *i){
                 *i=id;
             break; // le film est ajouté !
         }
-        printf("Voulez-vous sauvegarder la base dans le fichier CSV ?\n");
+        printf("Voulez-vous sauvegarder la base dans le fichier CSV ?\n\n");
         printf("0 - NON || 1 - OUI\n");
         scanf("%d",&choix);
         switch(choix){
             case 0:
-                printf("Vous travaillez donc sur une base non sauvegardée !\n");
+                printf("Vous travaillez donc sur une base non sauvegardée !\n\n");
             break;
 
             case 1:
-                printf("Ajout au fichier...\n");
+                printf("Ajout au fichier...\n\n");
                 fprintf(f,"%d;%s;%d;%s;%d;%s;%s;%s;%d;%d;\n",film[id].id,film[id].titre,film[id].annee,film[id].genre,film[id].duree,film[id].pays,film[id].real,film[id].acteurs,film[id].note,film[id].nb_vote);
             break;
         }
@@ -260,7 +260,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
     void creer_film(Film *new_film, int *id2, int *id){
         int choix, new_id=0;
         char genre[30];
-        printf("-----création de film------\n");
+        printf("-----Menu création d'un film------\n");
         printf("Titre :");
         scanf("%s", new_film->titre);
         printf("%s", new_film->titre);
@@ -363,13 +363,13 @@ int chercher_id_film(Film *film, char *nom, int *i){
         scanf("%s", new_film->acteurs);
         printf("\nNote moyenne : ");
         scanf("%d", &(new_film)->note);
-        printf("\nNombre de vote : ");
+        printf("\nNombre de votes : ");
         scanf("%d", &(new_film)->nb_vote);
         new_id = *id2+1;
         new_film->id=new_id;
     }
 
-    void supprimer_film(FILE *f , Film *del_film){ //A commleter
+    void supprimer_film(FILE *f , Film *del_film){
         int id;
         id=del_film->id;
         fseek(f,id,SEEK_SET);
@@ -385,7 +385,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
                 fprintf(f_save,"%d;%s;%d;%s;%d;%s;%s;%s;%d;%d;\n",film[id].id,film[id].titre,film[id].annee,film[id].genre,film[id].duree,film[id].pays,film[id].real,film[id].acteurs,film[id].note,film[id].nb_vote);
             id++;
         }
-        printf("%d films sauvegardés dans le fichier bdd_save.csv !\n", id);
+        printf("%d films sauvegardés dans le fichier bdd_save.csv !\n\n", id);
 
         id=0;
 

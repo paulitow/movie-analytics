@@ -26,7 +26,7 @@ int main() {
   char nom[50], prechoix[1], prechoix2[1];
   n = nb_ligne(f);
   Film *f_bdd=NULL, *new_film=NULL;
-  f_bdd = (Film*)malloc(sizeof(Film)*n); // On alloue la taille necessaire à l'init de la base
+  f_bdd = (Film*)malloc(sizeof(Film)*n); // On alloue la taille nécessaire à l'init de la base
   new_film = (Film*)malloc(sizeof(Film));
   splash();
   do {
@@ -52,19 +52,19 @@ int main() {
                 menu_base();
                 scanf("%s", prechoix);
                 if (!isdigit(prechoix[0])){
-                    printf("Le choix est un char!\n");
+                    printf("Le choix est un caractère !\n\n");
                 choix=9;
                 }else{
                     choix=atoi(prechoix);
                 }
                 switch(choix){
-                    case 1: //Chercher film
+                    case 1: //Chercher un film
                         printf("Entrez le nom du film recherché : \n");
                         scanf("%s", nom);
                         chercher_film(f_bdd, nom, &i);
                     break;
 
-                    case 2: //ajouter film
+                    case 2: //ajouter un film
                         f_bdd = (Film*)realloc(f_bdd, sizeof(Film)*i+1);
                         creer_film(new_film, &id, &i);
                         ajouter_film(f, f_bdd, new_film, &i);
@@ -78,7 +78,7 @@ int main() {
                     break;
                 }//switch menu base
             } else{
-                printf(KRED"Erreur "KRESET": la base n'est pas initialisée !\n");
+                printf(KRED"Erreur "KRESET": la base n'est pas initialisée !\n\n");
             }    //if base init
         break; //break case menu base
 
@@ -87,13 +87,13 @@ int main() {
                 menu_stat();
                 scanf("%s", prechoix);
                 if (!isdigit(prechoix[0])){
-                    printf("Le choix est un char!\n");
+                    printf("Le choix est un caractère !\n\n");
                 choix=9;
                 }else{
                     choix=atoi(prechoix);
                 }
                 switch(choix){
-                    case 1: //Pays le plus cinéphile (production de film)
+                    case 1: //Pays le plus producteur de films)
                         global_stat(f_bdd, &i);
                     break;
 
@@ -107,7 +107,7 @@ int main() {
                         printf("Saisisez le nombre d'année à estimer : (1 = 5)\n");
                         scanf("%s", prechoix2);
                         if (!isdigit(prechoix[0]) || !isdigit(prechoix2[0])){
-                            printf(KRED"Un des champs contient des caractères"KRESET"\nNous utilisons les valeurs par défaut.\n");
+                            printf(KRED"Un des champs contient des caractères"KRESET"\nNous utilisons les valeurs par défaut.\n\n");
                             choix=1;
                             choix2=1;
                         }else{
@@ -133,7 +133,7 @@ int main() {
                 }//switch menu base
 
             }else{
-                printf(KRED"Erreur "KRESET": la base n'est pas initialisée !\n");
+                printf(KRED"Erreur "KRESET": la base n'est pas initialisée !\n\n");
             }
         break; // break menu stat
 

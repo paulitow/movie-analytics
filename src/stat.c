@@ -13,7 +13,7 @@
             case 0: //Par genre
                 i2=0;
                 note=0;
-                printf("Choix des genres :\n");
+                printf("\nChoix des genres :\n");
                 printf("0 : Comédie\n");
                 printf("1 : Drame\n");
                 printf("2 : Thriller\n");
@@ -27,7 +27,7 @@
                 printf("--------Choix ?---------\n");
                 scanf("%s", prechoix);
                 if (!isdigit(prechoix[0])){
-                    printf("Le choix est un char!\nUtilisation de valeur par défaut!\n");
+                    printf("Vous avez entré un caractère incorrect.\nUtilisation de la valeur par défaut !\n");
                 rep=0;
                 }else{
                     rep=atoi(prechoix);
@@ -73,7 +73,7 @@
                         strcpy(genre, "Musical");
                     break;
                     default:
-                        printf("Non reconnu, voici pour Comedy :\n");
+                        printf("Non reconnu, voici pour Comédie :\n");
                         strcpy(genre, "Comedy");
                     break;
                 }
@@ -92,10 +92,10 @@
                 printf("Il y à %d films pour le genre %s\n", tmp, genre);
                 printf("Le film le mieux noté de ce genre est :\n");
                 printf("Titre : %s\n", best_film.titre);
-                printf("Annee : %d\n", best_film.annee);
+                printf("Année : %d\n", best_film.annee);
                 printf("Genre : %s\n", best_film.genre);
                 printf("Note : %d\n", best_film.note);
-                printf("----------\n");
+                printf("----------\n\n");
 
             break; //Fin recherche par genre
 
@@ -105,13 +105,13 @@
                 printf("Entrez l'année recherchée :\n");
                 scanf("%s", prechoix);
                 if (!isdigit(prechoix[0])){
-                    printf("Le choix est un char!\nUtilisation de valeur par défaut!\n");
+                    printf("Le choix est un caractère !\nUtilisation de la valeur par défaut!\n\n");
                 rep=2018;
                 }else{
                     rep=atoi(prechoix);
                 }
                 if (rep>2018){
-                    printf("!! Eh Oh on peut pas aller plus vite que la musique !\n!! Regardes déjà ceux de 2018 non ?\n");
+                    printf("!! Cette année est disponible dans les prévisions !\n!! Ou regardez ceux de 2018 non ?\n");
                     rep=2018;
                 } else if (rep<1911){
                     printf("Le cinéma n'était pas inventé à cette époque, un peu de patience !\nVoici ceux pour 1911, la première année du cinéma :\n");
@@ -130,10 +130,10 @@
                 printf("Il y à %d films pour l'année %d\n", tmp, rep);
                 printf("Le film le mieux noté de cette année est :\n");
                 printf("Titre : %s\n", best_film.titre);
-                printf("Annee : %d\n", best_film.annee);
+                printf("Année : %d\n", best_film.annee);
                 printf("Genre : %s\n", best_film.genre);
                 printf("Note : %d\n", best_film.note);
-                printf("----------\n");
+                printf("----------\n\n");
 
             break;
 
@@ -150,11 +150,11 @@
                 printf("6 : Mexique\n");
                 printf("7 : Russie\n");
                 printf("8 : Suède\n");
-                printf("9 : Canada\n");
-                printf("--------Choix ?---------\n");
+                printf("9 : Canada\n\n");
+                printf("Votre choix ?\n");
                 scanf("%s", prechoix);
                 if (!isdigit(prechoix[0])){
-                    printf("Le choix est un char!\nUtilisation de valeur par défaut!\n");
+                    printf("Le choix est un caractère !\nUtilisation de la valeur par défaut!\n\n");
                 rep=0;
                 }else{
                     rep=atoi(prechoix);
@@ -200,7 +200,7 @@
                         strcpy(genre, "Canada");
                     break;
                     default:
-                        printf("Non reconnu, voici pour France :\n");
+                        printf("Non reconnu, voici pour France :\n\n");
                         strcpy(genre, "France");
                     break;
                 }
@@ -218,13 +218,13 @@
                 printf("Il y à %d films pour le pays %s\n", tmp, genre);
                 printf("Le film le mieux noté de ce pays est :\n");
                 printf("Titre : %s\n", best_film.titre);
-                printf("Annee : %d\n", best_film.annee);
+                printf("Année : %d\n", best_film.annee);
                 printf("Genre : %s\n", best_film.genre);
                 printf("Note : %d\n", best_film.note);
-                printf("----------\n");
+                printf("----------\n\n");
             break;
             default:
-                printf("Mauvais arguments !");
+                printf("Mauvais argument !\n\n");
             break;
         }
     }
@@ -242,7 +242,7 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
     if (for_year==1){
         for_year=5;
     } else if(for_year>50){
-        printf(KYEL"Limitation de la fonction de prévision à 50 ans !\n"KRESET);
+        printf(KYEL"Limitation de la fonction de prévision à 50 ans !\n"KRESET"Pour information, on estime que le nombre de films produit pour l'année 2100 est supérieur à 500 000 !\n\n");
         for_year=50;
     }
     Annee_evol *annee = NULL;
@@ -313,7 +313,7 @@ void stat_genre(Film *film, int *i){
     for (int i1=0 ; i1<*i ; i1++){ //Chaque film
         strcpy(nom_genre, strtok(film[i1].genre,","));
 
-        for (int i2=0 ; i2<nb_genre ; i2++){ //on vérifie qu'on l'a pas en base, sinon, on l'enregistre
+        for (int i2=0 ; i2<nb_genre ; i2++){ //on vérifie que la base ne le contient pas, sinon on l'enregistre
             if (strcmp(nom_genre, genre[i2].nom_genre)==0){ //si correspondance, alors on ne fait rien
                 occurence=1; // on l'a trouvé, il existe donc.
                 genre[i2].nb_film++;
@@ -321,10 +321,10 @@ void stat_genre(Film *film, int *i){
         }
 
         if (occurence!=1){ // si on ne l'a pas, on l'ajoute
-            if (strlen(nom_genre)<=3){ // Mais on vérifie que ca n'est pas un nom degeu
+            if (strlen(nom_genre)<=3){ // Mais on vérifie que c'est un nom standard.
                 //printf(KRED " X "KRESET"| Je n'aime pas ce pays : %s\n", nom_pays);
             } else { //OK, là le pays est valable
-                printf(KGRN" V "KRESET"| Nouveau genre : %s\n", nom_genre);
+                printf(KGRN" V "KRESET"| Nouveau genre : %s\n\n", nom_genre);
                 genre[nb_genre].id_genre=nb_genre+1;
                 strcpy(genre[nb_genre].nom_genre, nom_genre);
                 genre[nb_genre].nb_film=1;
@@ -349,28 +349,28 @@ void stat_genre(Film *film, int *i){
     stat_genre=realloc(stat_genre,sizeof(Genre_stat)*nb_genre_stat);
     trier_tb_genre(stat_genre, nb_genre_stat);
 
-    printf("=============PODIUM=============\n");
+    printf("\n=============PODIUM=============\n");
     printf("\n");
     for (int i2=0 ; i2<nb_genre_stat ; i2++){
         switch(i2){
             case 0:
-                printf(KGRN"1er Genre : %s nb film : %d\n", stat_genre[i2].nom_genre, stat_genre[i2].nb_film);
+                printf(KGRN"1er Genre : %s , Nombre de films : %d\n", stat_genre[i2].nom_genre, stat_genre[i2].nb_film);
             break;
             case 1:
-                printf(KYEL"2er Genre : %s nb film : %d\n", stat_genre[i2].nom_genre, stat_genre[i2].nb_film);
+                printf(KYEL"2er Genre : %s , Nombre de films : %d\n", stat_genre[i2].nom_genre, stat_genre[i2].nb_film);
             break;
             case 2:
-                printf(KCYN"3em Genre : %s nb film : %d\n", stat_genre[i2].nom_genre, stat_genre[i2].nb_film);
+                printf(KCYN"3ème Genre : %s , Nombre de films : %d\n", stat_genre[i2].nom_genre, stat_genre[i2].nb_film);
                 printf(KRESET"\n");
             break;
             default:
-                printf("    Genre : %s nb film : %d\n", stat_genre[i2].nom_genre, stat_genre[i2].nb_film);
+                printf("    Genre : %s , Nombre de films : %d\n", stat_genre[i2].nom_genre, stat_genre[i2].nb_film);
             break;
         }
 
     }
     printf("\n");
-    printf("=============PODIUM=============\n");
+    printf("=============PODIUM=============\n\n");
 
     free(stat_genre);
 
@@ -386,7 +386,7 @@ void global_stat(Film *film, int *i){
     for (int i1=0 ; i1<*i ; i1++){ //Chaque film
         strcpy(nom_pays, strtok(film[i1].pays,","));
 
-        for (int i2=0 ; i2<nb_pays ; i2++){ //on vérifie qu'on l'a pas en base, sinon, on l'enregistre
+        for (int i2=0 ; i2<nb_pays ; i2++){ //on vérifie que la base ne le contient pas, sinon, on l'enregistre
             if (strcmp(nom_pays, country[i2].nom_pays)==0){ //si correspondance, alors on ne fait rien
                 occurence=1; // on l'a trouvé, il existe donc.
                 country[i2].nb_film++;
@@ -394,10 +394,10 @@ void global_stat(Film *film, int *i){
         }
 
         if (occurence!=1){ // si on ne l'a pas, on l'ajoute
-            if (strlen(nom_pays)<=3){ // Mais on vérifie que ca n'est pas un nom degeu
+            if (strlen(nom_pays)<=3){ // Mais on vérifie si c'est un nom standard
                 //printf(KRED " X "KRESET"| Je n'aime pas ce pays : %s\n", nom_pays);
-            } else { //OK, là le pays est valable
-                printf(KGRN" V "KRESET"| Nouveau pays : %s\n", nom_pays);
+            } else { //OK, le pays est valable
+                printf(KGRN" V "KRESET"| Nouveau pays : %s\n\n", nom_pays);
                 country[nb_pays].id_pays=nb_pays+1;
                 strcpy(country[nb_pays].nom_pays, nom_pays);
                 country[nb_pays].nb_film=1;
@@ -426,28 +426,28 @@ void global_stat(Film *film, int *i){
     //On passe au traitement d'affichage
 
     trier_tb_pays(stat_country, nb_pays_stat); //On trie le tableau par ordre croissant
-    printf("=============PODIUM=============\n");
+    printf("\n=============PODIUM=============\n");
     printf("\n");
     for (int i2=0 ; i2<nb_pays_stat ; i2++){
         switch(i2){
             case 0:
-                printf(KGRN"1er Pays : %s nb film : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
+                printf(KGRN"1er Pays : %s , Nombre de films : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
             break;
             case 1:
-                printf(KYEL"2er Pays : %s nb film : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
+                printf(KYEL"2er Pays : %s , Nombre de films : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
             break;
             case 2:
-                printf(KCYN"3em Pays : %s nb film : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
+                printf(KCYN"3ème Pays : %s , Nombre de films : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
                 printf(KRESET"\n");
             break;
             default:
-                printf("    Pays : %s nb film : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
+                printf("    Pays : %s , Nombre de films : %d\n", stat_country[i2].nom_pays, stat_country[i2].nb_film);
             break;
         }
 
     }
     printf("\n");
-    printf("=============PODIUM=============\n");
+    printf("=============PODIUM=============\n\n");
     free(stat_country);
 
 
