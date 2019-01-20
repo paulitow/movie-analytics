@@ -1,34 +1,45 @@
-# Bienvenue sur le projet Movie-analytics !!
+# Bienvenue sur le projet Movie-Analytics !!
 
 # Suivre le projet en détails : https://isen.paulitow.fr/redmine/projects/movies-analytics
 
-Usage : ./Movie-analytics
+Usage : "./Movie-analytics" dans le répertoire du programme en ligne de commande.
 
-Démarez en itilalisant la base et c'est partit ! 
+Démarrez en initialisant la base et c'est parti ! 
+
+
+Voici le manuel utilisateur du programme :
 
 Menu initial :
-- Initialiser la BDD
-- Administration de la base
-- Statistique
-- Panel Utilisateur
-- !! LE BONUS !!
 
-Menu admin database :
-- Rechercher un film
+- Initialiser la BDD                                    ~~ Charge les films en mémoire ~~
+- Administration de la base                             ~~ Recherche, ajoute un film et sauvegarde la base ~~
+- Statistiques                                          ~~ Affiche plusieurs types de statistiques ~~
+- Quitter
+
+
+Menu administration database :
+
+- Rechercher un film 
 - Ajouter un film
-- Récupérer l'ID d'un film
-- Sauvegarder la base dans un fichier CSV
+- Sauvegarder la base dans un fichier CSV               ~~ Télécharge la base actuelle en local au format CSV ~~
+- Quitter
+
 
 Menu statistiques : 
-- Afficher le pays le plus cinéphile
-- Afficher le genre le mieux noté
-- Evolution des sorties
-- Lister les films par genre
-- Lister les films par année
-- Lister les films par pays
+
+------Avancées
+1 : Afficher les pays les plus producteurs de films     ~~ Liste l'ensemble des pays et affiche le top 3 ~~
+2 : Afficher les genres les plus réalisés               ~~ Liste l'ensemble des genres et affiche le top 3 ~~
+3 : Prédire l'évolution des sorties                     ~~ Outil analytique perfectionné affichant les tendances ~~
+------Basiques
+4 : Compter les films par genre
+5 : Compter les films par année
+6 : Compter les films par pays
+0 : Quitter
 
 
-Bon film !
+Bon film, enjoy !
+
 L'équipe Movie-analytics.
 
 Projet ISEN P16 Informatique
