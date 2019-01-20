@@ -11,7 +11,7 @@
 
 
 
-*///#################################################
+####################################################*/
 
 int main() {
 
@@ -52,7 +52,7 @@ int main() {
                 menu_base();
                 scanf("%s", prechoix);
                 if (!isdigit(prechoix[0])){
-                    printf("Le choix est un caractère !\n\n");
+                    printf(KRED"Le choix n'est pas valide !\n"KRESET);
                 choix=9;
                 }else{
                     choix=atoi(prechoix);
@@ -87,7 +87,7 @@ int main() {
                 menu_stat();
                 scanf("%s", prechoix);
                 if (!isdigit(prechoix[0])){
-                    printf("Le choix est un caractère !\n\n");
+                    printf(KRED"Le choix n'est pas valide !\n"KRESET);
                 choix=9;
                 }else{
                     choix=atoi(prechoix);
