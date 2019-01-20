@@ -39,7 +39,7 @@ Menu statistiques :
 - Quitter
 
 
-Bon film, enjoy !
+Bon film !
 
 L'équipe Movie-analytics.
 
