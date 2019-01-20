@@ -235,12 +235,15 @@
 void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
     if (from_year==1){
         from_year=1911;
-    } else if(from_year<1911){
+    } else if(from_year<1911 || from_year>2017){
         from_year=1911;
-        printf("1911 est la première année où il y a eu des films de réalisés.\n");
+        printf(KRED"Erreur "KRESET": utilisation des valeurs par défaut !\n");
     }
     if (for_year==1){
         for_year=5;
+    } else if(for_year>50){
+        printf(KYEL"Limitation de la fonction de prévision à 50 ans !\n"KRESET);
+        for_year=50;
     }
     Annee_evol *annee = NULL;
     int delta=0, i3=0, cpt_moy=0;
