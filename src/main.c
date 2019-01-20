@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "base.h"
 #include "stat.h"
 
@@ -34,6 +35,10 @@ int main() {
         printf("La base n'est pas initialiser ! Vous devriez le faire en tapant 1.\n");
     }
     scanf("%d", &choix);
+    if (((int)choix)>=4){
+        printf("Le choix n'est pas valide !\n");
+        choix=0;
+    }
     switch(choix){
         case 1: // initialisation de la base
             i=init_bdd(f, &n, f_bdd, &id); //  i=nb element dans base
