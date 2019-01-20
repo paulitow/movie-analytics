@@ -5,7 +5,8 @@
 #include "base.h"
 #include "stat.h"
 
-/*#########################V1.0.1####################
+/*####################V2.0###########################
+              Projet Movie Analytics
     Auteurs : Paul Moyse - Damien Desmarets
 
 
@@ -25,14 +26,14 @@ int main() {
   char nom[50];
   n = nb_ligne(f);
   Film *f_bdd=NULL, *new_film=NULL;
-  f_bdd = (Film*)malloc(sizeof(Film)*n); // On Alloue la taille necessaire à l'init de la base
+  f_bdd = (Film*)malloc(sizeof(Film)*n); // On alloue la taille necessaire à l'init de la base
   new_film = (Film*)malloc(sizeof(Film));
   splash();
   do {
     menu(); // affichage simple du menu
     if (i<1){
         printf("\n--!! Attention !!--\n");
-        printf("La base n'est pas initialiser ! Vous devriez le faire en tapant 1.\n");
+        printf("La base n'est pas initialisée ! Vous devriez le faire en tapant 1.\n");
     }
     scanf("%d", &choix);
     if (((int)choix)>=4){
@@ -50,7 +51,7 @@ int main() {
                 scanf("%d", &choix);
                 switch(choix){
                     case 1: //Chercher film
-                        printf("Entrez le nom du film à chercher : \n");
+                        printf("Entrez le nom du film recherché : \n");
                         scanf("%s", nom);
                         chercher_film(f_bdd, nom, &i);
                     break;

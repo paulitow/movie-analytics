@@ -68,18 +68,18 @@ void menu_base(){
     }
 
     void splash(){
-    printf(KCYN" /XX      /XX                      /XX\n"); 
-    printf("| XXX    /XXX\n"); 
-    printf("| XXXX  /XXXX  /XXXXXX  /XX    /XX /XX  /XXXXXX\n"); 
-    printf("| XX XX/XX XX /XX__  XX|  XX  /XX/| XX /XX__  XX\n"); 
-    printf("| XX  XXX| XX| XX    XX    XX/XX/ | XX| XXXXXXXX\n"); 
-    printf("| XX   X | XX| XX  | XX     XXX/  | XX| XX_____/\n"); 
-    printf("| XX     | XX|  XXXXXX/      X/   | XX|  XXXXXXX\n"); 
-    printf("|__/     |__/ |______/      _/    |__/      ___/\n"); 
+    printf(KCYN" /XX      /XX                      /XX\n");
+    printf("| XXX    /XXX\n");
+    printf("| XXXX  /XXXX  /XXXXXX  /XX    /XX /XX  /XXXXXX\n");
+    printf("| XX XX/XX XX /XX__  XX|  XX  /XX/| XX /XX__  XX\n");
+    printf("| XX  XXX| XX| XX    XX    XX/XX/ | XX| XXXXXXXX\n");
+    printf("| XX   X | XX| XX  | XX     XXX/  | XX| XX_____/\n");
+    printf("| XX     | XX|  XXXXXX/      X/   | XX|  XXXXXXX\n");
+    printf("|__/     |__/ |______/      _/    |__/      ___/\n");
     printf("---------------------Analytics------------------\n");
     printf("-----------------------V2.0---------------------\n");
     printf("\n"KRESET);
-                                                
+
     }
 
     int init_bdd(FILE * f, int *n, Film *film, int *id){ // retrourne le nombre d'éléments en base et init
@@ -92,7 +92,7 @@ void menu_base(){
 
         (film+i)->id = atoi(strtok(l,";")); // ID
         printf("ID : %d\n", film[i].id);
-        *id=film[i].id;//préparation à l'ajout d'un nouveau 
+        *id=film[i].id;//préparation à l'ajout d'un nouveau
 
         //printf("%s",strtok(NULL,";"));
         strcpy((film+i)->titre,strtok(NULL,";"));// Titre
@@ -203,7 +203,7 @@ int chercher_id_film(Film *film, char *nom, int *i){
 
 }
 
-   
+
 
     void ajouter_film(FILE *f,Film *film, Film *new_film, int *i){
         int choix, id;
@@ -386,12 +386,8 @@ int chercher_id_film(Film *film, char *nom, int *i){
             id++;
         }
         printf("%d films sauvegardés dans le fichier bdd_save.csv !\n", id);
-        
+
         id=0;
-        
-        
+
+
     }
-
-
-
-   
