@@ -324,7 +324,7 @@ void stat_genre(Film *film, int *i){
             if (strlen(nom_genre)<=3){ // Mais on vérifie que c'est un nom standard.
                 //printf(KRED " X "KRESET"| Je n'aime pas ce pays : %s\n", nom_pays);
             } else { //OK, là le pays est valable
-                printf(KGRN" V "KRESET"| Nouveau genre : %s\n\n", nom_genre);
+                printf(KGRN" V "KRESET"| Nouveau genre : %s\n", nom_genre);
                 genre[nb_genre].id_genre=nb_genre+1;
                 strcpy(genre[nb_genre].nom_genre, nom_genre);
                 genre[nb_genre].nb_film=1;
@@ -338,7 +338,7 @@ void stat_genre(Film *film, int *i){
     genre=realloc(genre,nb_genre+1); // on réalloue proprement le tableau
     stat_genre=calloc(sizeof(genre),nb_genre);
     for(int i2=0 ; i2<nb_genre ; i2++){
-        if (genre[i2].nb_film>500){
+        if (genre[i2].nb_film>700){
             stat_genre[nb_genre_stat].id_genre=genre[i2].id_genre;
             strcpy(stat_genre[nb_genre_stat].nom_genre,genre[i2].nom_genre);
             stat_genre[nb_genre_stat].nb_film=genre[i2].nb_film;
@@ -397,7 +397,7 @@ void global_stat(Film *film, int *i){
             if (strlen(nom_pays)<=3){ // Mais on vérifie si c'est un nom standard
                 //printf(KRED " X "KRESET"| Je n'aime pas ce pays : %s\n", nom_pays);
             } else { //OK, le pays est valable
-                printf(KGRN" V "KRESET"| Nouveau pays : %s\n\n", nom_pays);
+                printf(KGRN" V "KRESET"| Nouveau pays : %s\n", nom_pays);
                 country[nb_pays].id_pays=nb_pays+1;
                 strcpy(country[nb_pays].nom_pays, nom_pays);
                 country[nb_pays].nb_film=1;

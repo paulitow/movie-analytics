@@ -142,7 +142,7 @@ int main() {
         break;
     }
   }while(choix!=0);
-  free(f_bdd); //C'est bon je te relache ! Va en paix mamen !
+  free(f_bdd); //C'est bon je te relache ! Va en paix !
   fclose(f);
-  printf("L'équipe Movie Analytics vous souhaite de bonnes fêtes !\n\n");
+  printf("L'équipe Movie Analytics vous souhaite un bon film !\n\n");
 }
