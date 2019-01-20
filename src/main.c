@@ -23,7 +23,7 @@ int main() {
       printf("Ouverture OK !\n");
   }
   int n=0, i=0,choix,choix2, id=0;
-  char nom[50], prechoix[1];
+  char nom[50], prechoix[1], prechoix2[1];
   n = nb_ligne(f);
   Film *f_bdd=NULL, *new_film=NULL;
   f_bdd = (Film*)malloc(sizeof(Film)*n); // On alloue la taille necessaire à l'init de la base
@@ -37,7 +37,7 @@ int main() {
     }
     scanf("%s", prechoix);
     if (!isdigit(prechoix[0])){
-        printf("Le choix est un char!\n");
+        printf(KRED"Le choix n'est pas valide !\n"KRESET);
         choix=9;
     }else{
         choix=atoi(prechoix);
@@ -103,9 +103,17 @@ int main() {
 
                     case 3: // évolution des sorties
                         printf("Saisisez l'année à partir de laquelle vous voulez calculer l'évolution (1 = 1911) :\n");
-                        scanf("%d", &choix);
+                        scanf("%s", prechoix);
                         printf("Saisisez le nombre d'année à estimer : (1 = 5)\n");
-                        scanf("%d", &choix2);
+                        scanf("%s", prechoix2);
+                        if (!isdigit(prechoix[0]) || !isdigit(prechoix2[0])){
+                            printf(KRED"Un des champs contient des caractères"KRESET"\nNous utilisons les valeurs par défaut.\n");
+                            choix=1;
+                            choix2=1;
+                        }else{
+                            choix=atoi(prechoix);
+                            choix2=atoi(prechoix2);
+                        }
                         evolution_sortie(f_bdd, choix, choix2, &i);
                     break;
 
@@ -119,6 +127,8 @@ int main() {
 
                     case 6: // lister par pays
                         lister_film(f_bdd, 2 , &i);
+                    break;
+                    default:
                     break;
                 }//switch menu base
 
