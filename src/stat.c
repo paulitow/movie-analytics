@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "base.h"
 #include "stat.h"
 
@@ -270,10 +271,86 @@ void evolution_sortie(Film *film, int from_year, int for_year, int *i) {
     
 }
 
+void stat_genre(Film *film, int *i){
+ 
+    //Annee_genre *annee=NULL;
+    Genre_stat *genre=NULL, *stat_genre=NULL;
+    int occurence=0, nb_genre=0, nb_genre_stat=0;
+    char nom_genre[50];
+
+    genre=calloc(sizeof(Genre_stat),250); //Je prends large
+
+
+    for (int i1=0 ; i1<*i ; i1++){ //Chaque film
+        strcpy(nom_genre, strtok(film[i1].genre,","));
+  
+        for (int i2=0 ; i2<nb_genre ; i2++){ //on vérifie qu'on l'a pas en base, sinon, on l'enregistre
+            if (strcmp(nom_genre, genre[i2].nom_genre)==0){ //si correspondance, alors on ne fait rien
+                occurence=1; // on l'a trouvé, il existe donc.
+                genre[i2].nb_film++;
+            }
+        }
+
+        if (occurence!=1){ // si on ne l'a pas, on l'ajoute
+            if (strlen(nom_genre)<=3){ // Mais on vérifie que ca n'est pas un nom degeu
+                //printf(KRED " X "KRESET"| Je n'aime pas ce pays : %s\n", nom_pays);
+            } else { //OK, là le pays est valable
+                printf(KGRN" V "KRESET"| Nouveau genre : %s\n", nom_genre);
+                genre[nb_genre].id_genre=nb_genre+1;
+                strcpy(genre[nb_genre].nom_genre, nom_genre);
+                genre[nb_genre].nb_film=1;
+                nb_genre++;
+                }
+        } else{
+            occurence=0;
+        }
+    
+    } // fin di traitement de chaques film
+    genre=realloc(genre,nb_genre+1); // on réalloue proprement le tableau
+    stat_genre=calloc(sizeof(genre),nb_genre);
+    for(int i2=0 ; i2<nb_genre ; i2++){
+        if (genre[i2].nb_film>500){
+            stat_genre[nb_genre_stat].id_genre=genre[i2].id_genre;
+            strcpy(stat_genre[nb_genre_stat].nom_genre,genre[i2].nom_genre);
+            stat_genre[nb_genre_stat].nb_film=genre[i2].nb_film;
+            nb_genre_stat++;
+        }
+    }
+    free(genre);
+    stat_genre=realloc(stat_genre,sizeof(Genre_stat)*nb_genre_stat);
+    trier_tb_genre(stat_genre, nb_genre_stat);
+    
+    printf("=============PODIUM=============\n");
+    printf("\n");
+    for (int i2=0 ; i2<nb_genre_stat ; i2++){
+        switch(i2){
+            case 0:
+                printf(KGRN"1er Genre : %s nb film : %d\n", stat_genre[i2].nom_genre, stat_genre[i2].nb_film);
+            break;
+            case 1:
+                printf(KYEL"2er Genre : %s nb film : %d\n", stat_genre[i2].nom_genre, stat_genre[i2].nb_film);
+            break;
+            case 2:
+                printf(KCYN"3em Genre : %s nb film : %d\n", stat_genre[i2].nom_genre, stat_genre[i2].nb_film);
+                printf(KRESET"\n");
+            break;
+            default:
+                printf("    Genre : %s nb film : %d\n", stat_genre[i2].nom_genre, stat_genre[i2].nb_film);
+            break;
+        }
+       
+    }
+    printf("\n");
+    printf("=============PODIUM=============\n");
+
+    free(stat_genre);
+     
+}
+
 void global_stat(Film *film, int *i){
     Pays_stat *country = NULL, *stat_country = NULL;
     char nom_pays[255];
-    country=(Pays_stat*)malloc(sizeof(Pays_stat)*5000); // je ne sais pas à quoi m'attendre, je prends large !
+    country=(Pays_stat*)malloc(sizeof(Pays_stat)*300); // je ne sais pas à quoi m'attendre, je prends large !
     int nb_pays=0, occurence=0, nb_pays_stat=0;
 
 
@@ -319,7 +396,7 @@ void global_stat(Film *film, int *i){
     stat_country=realloc(stat_country, sizeof(Pays_stat)*nb_pays_stat);//et on réalloue proprement notre tableau final
     //On passe au traitement d'affichage
 
-    trier_tb_c(stat_country, nb_pays_stat); //On trie le tableau par ordre croissant
+    trier_tb_pays(stat_country, nb_pays_stat); //On trie le tableau par ordre croissant
     printf("=============PODIUM=============\n");
     printf("\n");
     for (int i2=0 ; i2<nb_pays_stat ; i2++){
@@ -347,7 +424,7 @@ void global_stat(Film *film, int *i){
 
 }   
 //Methode du tri par selection
-void trier_tb_c(Pays_stat *stat_country, int nb_pays){
+void trier_tb_pays(Pays_stat *stat_country, int nb_pays){
     Pays_stat *tmp = NULL;
     tmp=(Pays_stat*)malloc(sizeof(Pays_stat));
     //Pays_stat tmp;
@@ -358,6 +435,23 @@ void trier_tb_c(Pays_stat *stat_country, int nb_pays){
                 *tmp=stat_country[i];
                 stat_country[i]=stat_country[j];
                 stat_country[j]=*tmp;
+            }
+        }
+    }
+    free(tmp);
+}
+
+void trier_tb_genre(Genre_stat *stat_genre, int nb_genre){
+    Genre_stat *tmp = NULL;
+    tmp=(Genre_stat*)malloc(sizeof(Genre_stat));
+    //Pays_stat tmp;
+    int j,i;
+    for(i=0 ; i<nb_genre-1 ; i++){
+        for(j=i+1 ; j<nb_genre ; j++){
+            if(stat_genre[i].nb_film<stat_genre[j].nb_film){
+                *tmp=stat_genre[i];
+                stat_genre[i]=stat_genre[j];
+                stat_genre[j]=*tmp;
             }
         }
     }

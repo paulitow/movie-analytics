@@ -78,7 +78,7 @@ int main() {
                     break;
 
                     case 2: //Genre le mieux noté
-                        //stat_genre(); ???
+                        stat_genre(f_bdd, &i);
                     break;
 
                     case 3: // évolution des sorties
