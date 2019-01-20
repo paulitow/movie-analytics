@@ -23,7 +23,7 @@ int main() {
       printf("Ouverture OK !\n");
   }
   int n=0, i=0,choix,choix2, id=0;
-  char nom[50];
+  char nom[50], prechoix[1];
   n = nb_ligne(f);
   Film *f_bdd=NULL, *new_film=NULL;
   f_bdd = (Film*)malloc(sizeof(Film)*n); // On alloue la taille necessaire à l'init de la base
@@ -32,13 +32,15 @@ int main() {
   do {
     menu(); // affichage simple du menu
     if (i<1){
-        printf("\n--!! Attention !!--\n");
+        printf(KRED"\n--!! Attention !!--\n"KRESET);
         printf("La base n'est pas initialisée ! Vous devriez le faire en tapant 1.\n");
     }
-    scanf("%d", &choix);
-    if (((int)choix)>=4){
-        printf("Le choix n'est pas valide !\n");
-        choix=0;
+    scanf("%s", prechoix);
+    if (!isdigit(prechoix[0])){
+        printf("Le choix est un char!\n");
+        choix=9;
+    }else{
+        choix=atoi(prechoix);
     }
     switch(choix){
         case 1: // initialisation de la base
@@ -48,7 +50,13 @@ int main() {
         case 2: // Administration de la DB
             if (i!=0){
                 menu_base();
-                scanf("%d", &choix);
+                scanf("%s", prechoix);
+                if (!isdigit(prechoix[0])){
+                    printf("Le choix est un char!\n");
+                choix=9;
+                }else{
+                    choix=atoi(prechoix);
+                }
                 switch(choix){
                     case 1: //Chercher film
                         printf("Entrez le nom du film recherché : \n");
@@ -77,7 +85,13 @@ int main() {
         case 3: // STATISTIQUES
             if (i!=0){
                 menu_stat();
-                scanf("%d", &choix);
+                scanf("%s", prechoix);
+                if (!isdigit(prechoix[0])){
+                    printf("Le choix est un char!\n");
+                choix=9;
+                }else{
+                    choix=atoi(prechoix);
+                }
                 switch(choix){
                     case 1: //Pays le plus cinéphile (production de film)
                         global_stat(f_bdd, &i);
