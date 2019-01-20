@@ -73,6 +73,7 @@
                         strcpy(genre, "Musical");
                     break;
                     default:
+                        printf("Non reconnu, voici pour Comedy :\n");
                         strcpy(genre, "Comedy");
                     break;
                 }
