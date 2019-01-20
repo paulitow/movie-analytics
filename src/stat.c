@@ -6,7 +6,7 @@
 #include "stat.h"
 
  void lister_film(Film *film, int arg, int *i){
-        char genre[50];
+        char genre[50], prechoix[1];
         Film best_film;
         int i2=0, rep=0, tmp=0, note=0;
         switch(arg){
@@ -25,7 +25,13 @@
                 printf("8 : Biographie\n");
                 printf("9 : Musicale\n");
                 printf("--------Choix ?---------\n");
-                scanf("%d", &rep);
+                scanf("%s", prechoix);
+                if (!isdigit(prechoix[0])){
+                    printf("Le choix est un char!\nUtilisation de valeur par défaut!\n");
+                rep=0;
+                }else{
+                    rep=atoi(prechoix);
+                }
                 switch(rep){
                     case 0:
                         strcpy(genre, "Comedy");
@@ -66,6 +72,9 @@
                     case 9:
                         strcpy(genre, "Musical");
                     break;
+                    default:
+                        strcpy(genre, "Comedy");
+                    break;
                 }
                 //une fois le genre initialisé, on peux référencer les films
 
@@ -93,10 +102,16 @@
                 i2=0;
                 note=0;
                 printf("Entrez l'année recherchée :\n");
-                scanf("%d", &rep);
-                if (rep>2019){
-                    printf("!! Eh Oh on peut pas aller plus vite que la musique !\n!! Regardes déjà ceux de 2019 non ?\n");
-                    rep=2019;
+                scanf("%s", prechoix);
+                if (!isdigit(prechoix[0])){
+                    printf("Le choix est un char!\nUtilisation de valeur par défaut!\n");
+                rep=2018;
+                }else{
+                    rep=atoi(prechoix);
+                }
+                if (rep>2018){
+                    printf("!! Eh Oh on peut pas aller plus vite que la musique !\n!! Regardes déjà ceux de 2018 non ?\n");
+                    rep=2018;
                 } else if (rep<1911){
                     printf("Le cinéma n'était pas inventé à cette époque, un peu de patience !\nVoici ceux pour 1911, la première année du cinéma :\n");
                     rep=1918;
@@ -136,7 +151,13 @@
                 printf("8 : Suède\n");
                 printf("9 : Canada\n");
                 printf("--------Choix ?---------\n");
-                scanf("%d", &rep);
+                scanf("%s", prechoix);
+                if (!isdigit(prechoix[0])){
+                    printf("Le choix est un char!\nUtilisation de valeur par défaut!\n");
+                rep=0;
+                }else{
+                    rep=atoi(prechoix);
+                }
                 switch(rep){
                     case 0:
                         strcpy(genre, "France");
@@ -176,6 +197,10 @@
 
                     case 9:
                         strcpy(genre, "Canada");
+                    break;
+                    default:
+                        printf("Non reconnu, voici pour France :\n");
+                        strcpy(genre, "France");
                     break;
                 }
 
