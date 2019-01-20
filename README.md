@@ -11,9 +11,9 @@ Voici le manuel utilisateur du programme :
 
 Menu initial :
 
-- Initialiser la BDD                                    ~~ Charge les films en mémoire ~~
-- Administration de la base                             ~~ Recherche, ajoute un film et sauvegarde la base ~~
-- Statistiques                                          ~~ Affiche plusieurs types de statistiques ~~
+- Initialiser la BDD --> Charge les films en mémoire
+- Administration de la base    --> Recherche, ajoute un film et sauvegarde la base
+- Statistiques    --> Affiche plusieurs types de statistiques
 - Quitter
 
 
@@ -21,21 +21,22 @@ Menu administration database :
 
 - Rechercher un film 
 - Ajouter un film
-- Sauvegarder la base dans un fichier CSV               ~~ Télécharge la base actuelle en local au format CSV ~~
+- Sauvegarder la base dans un fichier CSV  --> Télécharge la base actuelle en local au format CSV
 - Quitter
 
 
 Menu statistiques : 
 
-------Avancées
-1 : Afficher les pays les plus producteurs de films     ~~ Liste l'ensemble des pays et affiche le top 3 ~~
-2 : Afficher les genres les plus réalisés               ~~ Liste l'ensemble des genres et affiche le top 3 ~~
-3 : Prédire l'évolution des sorties                     ~~ Outil analytique perfectionné affichant les tendances ~~
-------Basiques
-4 : Compter les films par genre
-5 : Compter les films par année
-6 : Compter les films par pays
-0 : Quitter
+1 Avancées
+- Afficher les pays les plus producteurs de films     --> Liste l'ensemble des pays et affiche le top 3
+- Afficher les genres les plus réalisés               --> Liste l'ensemble des genres et affiche le top 3
+- Prédire l'évolution des sorties                     --> Outil analytique perfectionné affichant les tendances
+
+2 Basiques
+- Compter les films par genre
+- Compter les films par année
+- Compter les films par pays
+- Quitter
 
 
 Bon film, enjoy !
